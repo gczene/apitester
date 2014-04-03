@@ -28,6 +28,7 @@ Modify your index.html as:
 ## Demo
 
 http://coming.soon
+
 A simple tester for: http://openweathermap.org/
 
 ![Screenshot](https://raw.githubusercontent.com/gaborsar/apitester/master/screenshot.png)
