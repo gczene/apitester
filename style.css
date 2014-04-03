@@ -1,0 +1,96 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-family: Arial, Helvetica, sans-serif;
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #aaa;
+}
+::-webkit-scrollbar-thumb {
+  background: #555;
+}
+body {
+  background: url('escheresque.png');
+  overflow: hidden;
+}
+.clear {
+  clear: both;
+}
+.response {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 50%;
+  z-index: 2;
+  padding-bottom: 15px;
+  overflow-y: scroll;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 3px #ccc;
+}
+.response div {
+  padding: 10px;
+  margin: 15px 15px 0 15px;
+  border: 1px solid #ddd;
+  background: white;
+  font-size: 12px;
+  font-family: 'Lucida Console', Monaco, monospace;
+}
+.response div.fail {
+  color: red;
+}
+.forms {
+  position: fixed;
+  top: 0;
+  right: 50%;
+  bottom: 0;
+  left: 0;
+  padding-bottom: 15px;
+}
+.forms section {
+  text-align: right;
+}
+.forms section form {
+  position: relative;
+  display: inline-block;
+  width: 500px;
+  margin: 15px 15px 0 15px;
+  padding: 10px;
+  text-align: left;
+  background: #eee;
+  border-bottom: 3px solid #aaa;
+  box-shadow: 0 0 3px #ccc;
+}
+.forms section form input {
+  width: 472px;
+  padding: 10px 14px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background: white;
+  font-size: 12px;
+}
+.forms section form button {
+  padding: 10px 18px;
+  border-radius: 5px;
+  background: white;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 12px;
+  transition: all 250ms;
+}
+.forms section form button:hover {
+  border-color: #aaa;
+  background: #aaa;
+  color: white;
+}
+.forms section form .action {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 12px;
+}

@@ -1,0 +1,5 @@
+{
+  "browser": true,
+  "unparam": true,
+  "predef": [ "$" ]
+}

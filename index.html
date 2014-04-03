@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>API Tester</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
+  <script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+  <div class="response"></div>
+  <div class="forms" data-url="http://api.openweathermap.org">
+
+    <section>
+      <form action="/data/2.5/weather" method="get">
+        <input type="text" name="q" placeholder="city name">
+        <button type="submit">Submit</button>
+        <span class="action">Searching by city name</span>
+      </form>
+    </section>
+
+    <section>
+      <form action="/data/2.5/weather" method="get">
+        <input type="text" name="lat" placeholder="latitude">
+        <input type="text" name="lon" placeholder="longitude">
+        <button type="submit">Submit</button>
+        <span class="action">Seaching by geographic coordinats</span>
+      </form>
+    </section>
+
+    <section>
+      <form action="/data/2.5/weather" method="get">
+        <input type="text" name="id" placeholder="city ID">
+        <button type="submit">Submit</button>
+        <span class="action">Seaching by city ID</span>
+      </form>
+    </section>
+
+    <div class="clear"></div>
+  </div>
+</body>
+</html>
