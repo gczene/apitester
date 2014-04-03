@@ -1,6 +1,6 @@
 # API tester
 
-A lightweight API tester template.
+A lightweight API tester tool (template).
 
 ## Usage
 
@@ -17,7 +17,7 @@ Modify your index.html as:
     <!-- span.action : Just a label, describes your form -->
     <section>
       <form action="/data/2.5/weather" method="get">
-        <!-- add your fields (names are important) -->
+        <!-- add your fields (names converted to keys) -->
         <input type="text" name="q" placeholder="city name">
         <button type="submit">Submit</button>
         <span class="action">Searching by city name</span>
@@ -61,3 +61,6 @@ A simple tester for: http://openweathermap.org/
 ```
 
 ![Screenshot](https://raw.githubusercontent.com/gaborsar/apitester/master/screenshot.png)
+
+## License
+MIT
