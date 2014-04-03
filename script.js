@@ -26,9 +26,6 @@ $(document).ready(function () {
                 crossDomain: true,
                 data: $form.serialize()
             }).done(function (data, textStatus, jqXHR) {
-                if (data.token) {
-                    $('[name=token]').val(data.token);
-                }
                 appendResponse(jqXHR, 'done');
             }).fail(function (jqXHR) {
                 appendResponse(jqXHR, 'fail');
