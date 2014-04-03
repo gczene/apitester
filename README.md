@@ -31,4 +31,33 @@ http://coming.soon
 
 A simple tester for: http://openweathermap.org/
 
+```html
+  <div class="forms" data-url="http://api.openweathermap.org">
+
+    <section>
+      <form action="/data/2.5/weather" method="get">
+        <input type="text" name="q" placeholder="city name">
+        <button type="submit">Submit</button>
+        <span class="action">Searching by city name</span>
+      </form>
+    </section>
+
+    <section>
+      <form action="/data/2.5/weather" method="get">
+        <input type="text" name="lat" placeholder="latitude">
+        <input type="text" name="lon" placeholder="longitude">
+        <button type="submit">Submit</button>
+        <span class="action">Seaching by geographic coordinats</span>
+      </form>
+    </section>
+
+    <section>
+      <form action="/data/2.5/weather" method="get">
+        <input type="text" name="id" placeholder="city ID">
+        <button type="submit">Submit</button>
+        <span class="action">Seaching by city ID</span>
+      </form>
+    </section>
+```
+
 ![Screenshot](https://raw.githubusercontent.com/gaborsar/apitester/master/screenshot.png)
