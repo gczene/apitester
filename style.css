@@ -3,94 +3,168 @@
   padding: 0;
   border: none;
   background: transparent;
-  font-family: Arial, Helvetica, sans-serif;
-}
-::-webkit-scrollbar {
-  width: 5px;
-}
-::-webkit-scrollbar-track {
-  background: #aaa;
-}
-::-webkit-scrollbar-thumb {
-  background: #555;
+  font-family: 'Lato', sans-serif;
 }
 body {
-  background: url('escheresque.png');
   overflow: hidden;
-}
-.clear {
-  clear: both;
-}
-.response {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 50%;
-  z-index: 2;
-  padding-bottom: 15px;
-  overflow-y: scroll;
-  background: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 0 3px #ccc;
-}
-.response div {
-  padding: 10px;
-  margin: 15px 15px 0 15px;
-  border: 1px solid #ddd;
-  background: white;
-  font-size: 12px;
-  font-family: 'Lucida Console', Monaco, monospace;
-}
-.response div.fail {
-  color: red;
+  background: #f6f6f6;
 }
 .forms {
   position: fixed;
-  top: 0;
-  right: 50%;
+  top: 50px;
+  right: 550px;
   bottom: 0;
   left: 0;
   padding-bottom: 15px;
+  overflow-y: scroll;
+}
+.forms header {
+  z-index: 2;
+  position: fixed;
+  top: 0px;
+  right: 550px;
+  left: 0;
+  height: 50px;
+  border-bottom: 1px solid #ddd;
+  background: white;
+}
+.forms header h1 {
+  line-height: 50px;
+  padding-left: 20px;
+  font-size: 20px;
+  color: #333;
+  font-weight: bold;
+}
+.forms header nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 8px 10px 0 0;
+}
+.forms header nav button {
+  padding: 8px 16px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: all 250ms;
+  background: #eee;
+  background: linear-gradient(#f6f6f6, #e6e6e6);
+}
+.forms header nav button:hover {
+  border-color: #aaa;
+  background: #ddd;
+  background: linear-gradient(#e6e6e6, #d6d6d6);
+}
+.forms header nav button:nth-of-type(n+2) {
+  margin-left: 10px;
 }
 .forms section {
-  text-align: right;
+  text-align: center;
 }
 .forms section form {
   position: relative;
   display: inline-block;
-  width: 500px;
-  margin: 15px 15px 0 15px;
-  padding: 10px;
+  width: 700px;
+  margin: 10px 10px 0 10px;
+  padding: 15px;
   text-align: left;
-  background: #eee;
-  border-bottom: 3px solid #aaa;
-  box-shadow: 0 0 3px #ccc;
-}
-.forms section form input {
-  width: 472px;
-  padding: 10px 14px;
-  border-radius: 5px;
-  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
   background: white;
+}
+.forms section form legend {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
   font-size: 12px;
 }
-.forms section form button {
-  padding: 10px 18px;
+.forms section form input[type=text] {
+  width: 672px;
+  padding: 10px 14px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
   border-radius: 5px;
   background: white;
+  font-family: monospace;
+  font-size: 14px;
+}
+.forms section form textarea {
+  width: 672px !important;
+  height: 300px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: white;
+  font-family: monospace;
+  font-size: 14px;
+}
+.forms section form button {
+  padding: 8px 16px;
   cursor: pointer;
   text-transform: uppercase;
   font-size: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
   transition: all 250ms;
+  background: #eee;
+  background: linear-gradient(#f6f6f6, #e6e6e6);
 }
 .forms section form button:hover {
   border-color: #aaa;
-  background: #aaa;
-  color: white;
+  background: #ddd;
+  background: linear-gradient(#e6e6e6, #d6d6d6);
 }
-.forms section form .action {
+.forms section form button:nth-of-type(n+2) {
+  margin-left: 10px;
+}
+.responses {
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 550px;
+  padding-bottom: 15px;
+  overflow-y: scroll;
+  border-left: 1px solid #ddd;
+  background: white;
+}
+.responses div {
+  position: relative;
+  padding: 10px;
+  margin: 5px 10px 0 10px;
+  border-bottom: 1px solid #ddd;
+  background: white;
+}
+.responses div button {
+  padding: 5px 10px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 10px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  transition: all 250ms;
+  background: #eee;
+  background: linear-gradient(#f6f6f6, #e6e6e6);
   position: absolute;
-  bottom: 10px;
-  right: 10px;
-  font-size: 12px;
+  top: 5px;
+  right: 5px;
+}
+.responses div button:hover {
+  border-color: #aaa;
+  background: #ddd;
+  background: linear-gradient(#e6e6e6, #d6d6d6);
+}
+.responses div button:nth-of-type(n+2) {
+  margin-left: 10px;
+}
+.responses div pre {
+  font-size: 14px;
+  font-family: monospace;
+}
+.responses div.error pre {
+  color: red;
+  font-weight: bold;
 }

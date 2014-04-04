@@ -3,116 +3,162 @@
   padding: 0;
   border: none;
   background: transparent;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
-::-webkit-scrollbar {
-  width: 5px;
-}
-
-::-webkit-scrollbar-track {
-    background: #aaa;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #555;
-}
-
-//========================================================
-// This pattern is downloaded from www.subtlepatterns.com
-// If you need more, that's where to get'em.
-//========================================================
 body {
-  background: url('escheresque.png');
   overflow: hidden;
+  background: #f6f6f6;
 }
 
-.clear {
-  clear: both;
-}
+.button(@padding, @fontSize, @borderRadius) {
+  padding: @padding @padding * 2;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: @fontSize;
+  border: 1px solid #ddd;
+  border-radius: @borderRadius;
+  transition: all 250ms;
+  background: #eee;
+  background: linear-gradient(#f6f6f6, #e6e6e6);
 
-.response {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 50%;
-  z-index: 2;
-  padding-bottom: 15px;
-  overflow-y: scroll;
-  background: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 0 3px #ccc;
-
-  div {
-    padding: 10px;
-    margin: 15px 15px 0 15px;
-    border: 1px solid #ddd;
-    background: white;
-    font-size: 12px;
-    font-family: 'Lucida Console', Monaco, monospace;
+  &:hover {
+    border-color: #aaa;
+    background: #ddd;
+    background: linear-gradient(#e6e6e6, #d6d6d6);
   }
 
-  div.fail {
-    color: red;
+  &:nth-of-type(n+2) {
+    margin-left: 10px;
   }
 }
-
-@form-width: 500px;
-@input-padding-horizontal: 14px;
 
 .forms {
+  @form-width: 700px;
+  @input-padding-horizontal: 14px;
+
   position: fixed;
-  top: 0;
-  right: 50%;
+  top: 50px;
+  right: 550px;
   bottom: 0;
   left: 0;
   padding-bottom: 15px;
+  overflow-y: scroll;
+
+  header {
+    z-index: 2;
+    position: fixed;
+    top: 0px;
+    right: 550px;
+    left: 0;
+    height: 50px;
+    border-bottom: 1px solid #ddd;
+    background: white;
+
+    h1 {
+      line-height: 50px;
+      padding-left: 20px;
+      font-size: 20px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    nav {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 8px 10px 0 0;
+
+      button {
+        .button(8px, 12px, 5px);
+      }
+    }
+  }
 
   section {
-    text-align: right;
+    text-align: center;
 
     form {
       position: relative;
       display: inline-block;
       width: @form-width;
-      margin: 15px 15px 0 15px;
-      padding: 10px;
+      margin: 10px 10px 0 10px;
+      padding: 15px;
       text-align: left;
-      background: #eee;
-      border-bottom: 3px solid #aaa;
-      box-shadow: 0 0 3px #ccc;
+      border-bottom: 1px solid #ddd;
+      background: white;
 
-      input {
+      legend {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        font-size: 12px;
+      }
+
+      input[type=text] {
         width: @form-width - 2 * @input-padding-horizontal;
         padding: 10px @input-padding-horizontal;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
         border-radius: 5px;
-        margin-bottom: 10px;
         background: white;
-        font-size: 12px;
+        font-family: monospace;
+        font-size: 14px;
+      }
+
+      textarea {
+        width: @form-width - 2 * @input-padding-horizontal !important;
+        height: 300px;
+        padding: 10px @input-padding-horizontal;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background: white;
+        font-family: monospace;
+        font-size: 14px;
       }
 
       button {
-        padding: 10px 18px;
-        border-radius: 5px;
-        background: white;
-        cursor: pointer;
-        text-transform: uppercase;
-        font-size: 12px;
-        transition: all 250ms;
-
-        &:hover {
-          border-color: #aaa;
-          background: #aaa;
-          color: white;
-        }
+        .button(8px, 12px, 5px);
       }
+    }
+  }
+}
 
-      .action {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
-        font-size: 12px;
-      }
+.responses {
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 550px;
+  padding-bottom: 15px;
+  overflow-y: scroll;
+  border-left: 1px solid #ddd;
+  background: white;
+
+  div {
+    position: relative;
+    padding: 10px;
+    margin: 5px 10px 0 10px;
+    border-bottom: 1px solid #ddd;
+    background: white;
+
+    button {
+      .button(5px, 10px, 2px);
+      position: absolute;
+      top: 5px;
+      right: 5px;
+    }
+
+    pre {
+      font-size: 14px;
+      font-family: monospace;
+    }
+
+    &.error pre {
+      color: red;
+      font-weight: bold;
     }
   }
 }
