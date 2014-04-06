@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * Applciations
+ * @module app
+ */
 var app = angular.module('app', []);
 
 /**
@@ -7,10 +11,33 @@ var app = angular.module('app', []);
  */
 app.service('Forms', function () {
 
-    var self = this, updateLocalStorage;
+    var self = this, demoForms, updateLocalStorage;
 
-    // restore the list of forms from the localStorage
-    this.list = angular.fromJson(localStorage.forms) || [];
+    demoForms = [{
+        url: 'http://api.openweathermap.org/data/2.5/weather',
+        method: 'get',
+        label: 'Searching by city name',
+        data: {},
+        fields: [{ name: 'q', label: 'city name' }]
+    }, {
+        url: 'http://api.openweathermap.org/data/2.5/weather',
+        method: 'get',
+        label: 'Seaching by geographic coordinats',
+        data: {},
+        fields: [
+            { name: 'lat', label: 'latitude' },
+            { name: 'lon', label: 'longitude' }
+        ]
+    }, {
+        url: 'http://api.openweathermap.org/data/2.5/weather',
+        method: 'get',
+        label: 'Seaching by city ID',
+        data: {},
+        fields: [{ name: 'id', label: 'city ID' }]
+    }];
+
+    // restore the list of forms from the localStorage (or use the demo)
+    this.list = angular.fromJson(localStorage.forms) || demoForms;
 
     /**
      * Updates the localStorage copy.
