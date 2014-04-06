@@ -163,12 +163,12 @@ app.controller('FormController', [
 app.controller('ResponseListController', [
 
     '$scope',
-    'responseService',
+    'Responses',
 
-    function ($scope, responseService) {
+    function ($scope, Responses) {
 
         // list of responses
-        $scope.responses = responseService.list;
+        $scope.responses = Responses.list;
 
         /**
          * Removes a response by it's index.
@@ -176,7 +176,7 @@ app.controller('ResponseListController', [
          * @api public
          */
         $scope.remove = function (index) {
-            responseService.remove(index);
+            Responses.remove(index);
         };
     }
 ]);
