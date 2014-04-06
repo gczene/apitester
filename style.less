@@ -1,3 +1,29 @@
+/************************/
+/*  VARIABLES + MIXINS  */
+/************************/
+
+@scrollbar-color: #eee;
+
+@border-color: #ddd;
+@background-color: #f6f6f6;
+
+@button-background-color: #eee;
+@button-border-color: @border-color;
+
+@form-width: 700px;
+@input-padding-horizontal: 14px;
+
+@responses-width: 550px;
+
+.font-mono {
+  font-family: monospace;
+  font-size: 14px;
+}
+
+/***********/
+/*  RESET  */
+/***********/
+
 * {
   margin: 0;
   padding: 0;
@@ -6,26 +32,39 @@
   font-family: 'Lato', sans-serif;
 }
 
-body {
-  overflow: hidden;
-  background: #f6f6f6;
+/*************/
+/*  GLOBALS  */
+/*************/
+
+::-webkit-scrollbar {
+  width: 5px;
 }
 
-.button(@padding, @fontSize, @borderRadius) {
+::-webkit-scrollbar-track {
+  background-color: @scrollbar-color;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: @scrollbar-color - #222;
+}
+
+body {
+  overflow: hidden;
+  background: @background-color;
+}
+
+.button(@padding: 8px, @fontSize: 12px) {
   padding: @padding @padding * 2;
   cursor: pointer;
   text-transform: uppercase;
   font-size: @fontSize;
-  border: 1px solid #ddd;
-  border-radius: @borderRadius;
+  border-bottom: 1px solid @button-border-color;
+  background: @button-background-color;
   transition: all 250ms;
-  background: #eee;
-  background: linear-gradient(#f6f6f6, #e6e6e6);
 
   &:hover {
-    border-color: #aaa;
-    background: #ddd;
-    background: linear-gradient(#e6e6e6, #d6d6d6);
+    border-color: @button-border-color - #222;
+    background: @button-background-color - #222;
   }
 
   &:nth-of-type(n+2) {
@@ -33,10 +72,11 @@ body {
   }
 }
 
-.forms {
-  @form-width: 700px;
-  @input-padding-horizontal: 14px;
+/***********/
+/*  FORMS  */
+/***********/
 
+.forms {
   position: fixed;
   top: 50px;
   right: 550px;
@@ -52,12 +92,12 @@ body {
     right: 550px;
     left: 0;
     height: 50px;
-    border-bottom: 1px solid #ddd;
+    padding-left: 20px;
+    border-bottom: 1px solid @border-color;
     background: white;
 
     h1 {
       line-height: 50px;
-      padding-left: 20px;
       font-size: 20px;
       color: #333;
       font-weight: bold;
@@ -65,12 +105,11 @@ body {
 
     nav {
       position: absolute;
-      top: 0;
-      right: 0;
-      padding: 8px 10px 0 0;
+      top: 8px;
+      right: 10px;
 
       button {
-        .button(8px, 12px, 5px);
+        .button();
       }
     }
   }
@@ -85,7 +124,7 @@ body {
       margin: 10px 10px 0 10px;
       padding: 15px;
       text-align: left;
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid @border-color;
       background: white;
 
       legend {
@@ -95,35 +134,30 @@ body {
         font-size: 12px;
       }
 
-      input[type=text] {
+      input[type=text],
+      textarea {
+        .font-mono();
         width: @form-width - 2 * @input-padding-horizontal;
         padding: 10px @input-padding-horizontal;
         margin-bottom: 15px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
+        border: 1px solid @border-color;
         background: white;
-        font-family: monospace;
-        font-size: 14px;
       }
 
       textarea {
-        width: @form-width - 2 * @input-padding-horizontal !important;
         height: 300px;
-        padding: 10px @input-padding-horizontal;
-        margin-bottom: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        background: white;
-        font-family: monospace;
-        font-size: 14px;
       }
 
       button {
-        .button(8px, 12px, 5px);
+        .button();
       }
     }
   }
 }
+
+/***************/
+/*  RESPONSES  */
+/***************/
 
 .responses {
   z-index: 3;
@@ -131,9 +165,9 @@ body {
   top: 0;
   right: 0;
   bottom: 0;
-  width: 550px;
+  width: @responses-width;
   padding-bottom: 15px;
-  border-left: 1px solid #ddd;
+  border-left: 1px solid @border-color;
   background: white;
   overflow-y: auto;
 
@@ -141,19 +175,18 @@ body {
     position: relative;
     padding: 10px;
     margin: 5px 10px 0 10px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid @border-color;
     background: white;
 
     button {
-      .button(5px, 10px, 2px);
+      .button(5px, 10px);
       position: absolute;
       top: 5px;
       right: 5px;
     }
 
     pre {
-      font-size: 14px;
-      font-family: monospace;
+      .font-mono();
     }
 
     &.error pre {

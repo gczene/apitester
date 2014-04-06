@@ -7,7 +7,7 @@ var app = angular.module('app', []);
  */
 app.service('Forms', function () {
 
-    var self = this;
+    var self = this, updateLocalStorage;
 
     // restore the list of forms from the localStorage
     this.list = angular.fromJson(localStorage.forms) || [];
@@ -16,7 +16,7 @@ app.service('Forms', function () {
      * Updates the localStorage copy.
      * @api private
      */
-    var updateLocalStorage = function () {
+    updateLocalStorage = function () {
         localStorage.forms = angular.toJson(self.list);
     };
 
@@ -38,7 +38,7 @@ app.service('Forms', function () {
  */
 app.service('Responses', function () {
 
-    var self = this;
+    var self = this, updateLocalStorage;
 
     // restore the list of forms from the localStorage
     this.list = angular.fromJson(localStorage.responses) || [];
@@ -47,7 +47,7 @@ app.service('Responses', function () {
      * Updates the localStorage copy.
      * @api private
      */
-    var updateLocalStorage = function () {
+    updateLocalStorage = function () {
         localStorage.responses = angular.toJson(self.list);
     };
 
