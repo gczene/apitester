@@ -1,63 +1,57 @@
 # API tester
 
-A lightweight API tester tool (template).
+A lightweight API tester tool.
 
 ## Usage
 
-Modify your index.html as:
+Click on edit forms, and edit your forms JSON.
 
-```html
-  <!-- data-url : base URL you would like to test -->
-  <div class="forms" data-url="http://api.openweathermap.org">
+Demo JSON (for http://api.openweathermap.org):
 
-    <!-- add your forms -->
-    <!-- action : path you would like to test -->
-    <!-- method : HTTP method your API expects -->
-    <!-- submit button : leave as it is -->
-    <!-- span.action : Just a label, describes your form -->
-    <section>
-      <form action="/data/2.5/weather" method="get">
-        <!-- add your fields (names converted to keys) -->
-        <input type="text" name="q" placeholder="city name">
-        <button type="submit">Submit</button>
-        <span class="action">Searching by city name</span>
-      </form>
-    </section>
-```
-
-## Demo
-
-http://coming.soon
-
-A simple tester for: http://openweathermap.org/
-
-```html
-  <div class="forms" data-url="http://api.openweathermap.org">
-
-    <section>
-      <form action="/data/2.5/weather" method="get">
-        <input type="text" name="q" placeholder="city name">
-        <button type="submit">Submit</button>
-        <span class="action">Searching by city name</span>
-      </form>
-    </section>
-
-    <section>
-      <form action="/data/2.5/weather" method="get">
-        <input type="text" name="lat" placeholder="latitude">
-        <input type="text" name="lon" placeholder="longitude">
-        <button type="submit">Submit</button>
-        <span class="action">Seaching by geographic coordinats</span>
-      </form>
-    </section>
-
-    <section>
-      <form action="/data/2.5/weather" method="get">
-        <input type="text" name="id" placeholder="city ID">
-        <button type="submit">Submit</button>
-        <span class="action">Seaching by city ID</span>
-      </form>
-    </section>
+```json
+[
+  {
+    "url": "http://api.openweathermap.org/data/2.5/weather",
+    "method": "get",
+    "label": "Searching by city name",
+    "data": {},
+    "fields":
+    [
+      {
+        "name": "q",
+        "label": "city name"
+      }
+    ]
+  },
+  {
+    "url": "http://api.openweathermap.org/data/2.5/weather",
+    "method": "get",
+    "label": "Seaching by geographic coordinats",
+    "data": {},
+    "fields": [
+      {
+        "name": "lat",
+        "label": "latitude"
+      },
+      {
+        "name": "lon",
+        "label": "longitude"
+      }
+    ]
+  },
+  {
+    "url": "http://api.openweathermap.org/data/2.5/weather",
+    "method": "get",
+    "label": "Seaching by city ID",
+    "data": {},
+    "fields": [
+      {
+        "name": "id",
+        "label": "city ID"
+      }
+    ]
+  }
+]
 ```
 
 ![Screenshot](https://raw.githubusercontent.com/gaborsar/apitester/master/screenshot.png)
