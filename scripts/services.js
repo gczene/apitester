@@ -63,58 +63,82 @@ services.service('Forms', function () {
 /**
  * Responses service.
  */
-services.service('Responses', function () {
+services.service('Responses', [
 
-    var self = this, updateLocalStorage;
+    '$http',
 
-    // restore the list of forms from the localStorage
-    this.list = angular.fromJson(localStorage.responses) || [];
+    function ($http) {
 
-    /**
-     * Updates the localStorage copy.
-     * @api private
-     */
-    updateLocalStorage = function () {
-        localStorage.responses = angular.toJson(self.list);
-    };
+        var self = this, updateLocalStorage;
 
-    /**
-     * Removes a response by it's index.
-     * @param {Number} index
-     * @api public
-     */
-    this.remove = function (index) {
-        this.list.splice(index, 1);
-        updateLocalStorage();
-    };
+        // restore the list of forms from the localStorage
+        this.list = angular.fromJson(localStorage.responses) || [];
 
-    /**
-     * Adds a success response to the list.
-     * @param {Object} data
-     * @param {Number} status
-     * @api public
-     */
-    this.addSuccess = function (data, status) {
-        self.list.unshift({
-            status: status,
-            data: data,
-            error: false
-        });
-        updateLocalStorage();
-    };
+        /**
+         * Updates the localStorage copy.
+         * @api private
+         */
+        updateLocalStorage = function () {
+            localStorage.responses = angular.toJson(self.list);
+        };
 
-    /**
-     * Adds an error response to the list.
-     * @param {Object} data
-     * @param {Number} status
-     * @api public
-     */
-    this.addError = function (data, status) {
-        self.list.unshift({
-            status: status,
-            data: data,
-            error: true
-        });
-        updateLocalStorage();
-    };
-});
+        /**
+         * Removes a response by it's index.
+         * @param {Number} index
+         * @api public
+         */
+        this.remove = function (index) {
+            this.list.splice(index, 1);
+            updateLocalStorage();
+        };
+
+        /**
+         * Sends an HTTP request, and saves the response of it.
+         * @param {Object} options
+         * @api public
+         */
+        this.sendRequest = function (options) {
+            $http(options)
+                .success(this.addSuccess)
+                .error(this.addError);
+        };
+
+        /**
+         * Returns loading state.
+         * @returns {Boolean}
+         */
+        this.isLoading = function () {
+            return $http.pendingRequests.length > 0;
+        };
+
+        /**
+         * Adds a success response to the list.
+         * @param {Object} data
+         * @param {Number} status
+         * @api private
+         */
+        this.addSuccess = function (data, status) {
+            self.list.unshift({
+                status: status,
+                data: data,
+                error: false
+            });
+            updateLocalStorage();
+        };
+
+        /**
+         * Adds an error response to the list.
+         * @param {Object} data
+         * @param {Number} status
+         * @api private
+         */
+        this.addError = function (data, status) {
+            self.list.unshift({
+                status: status,
+                data: data,
+                error: true
+            });
+            updateLocalStorage();
+        };
+    }
+]);

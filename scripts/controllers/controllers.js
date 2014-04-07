@@ -50,23 +50,20 @@ app.controller('FormsCtrl', [
 app.controller('FormCtrl', [
 
     '$scope',
-    '$http',
     'Responses',
 
-    function ($scope, $http, Responses) {
+    function ($scope, Responses) {
 
         /**
          * Sends an API request.
          * @api public
          */
         $scope.sendRequest = function () {
-            var request = $http({
+            Responses.sendRequest({
                 url: $scope.form.url,
                 method: $scope.form.method,
                 params: $scope.form.data
             });
-            request.success(Responses.addSuccess);
-            request.error(Responses.addError);
         };
     }
 ]);
@@ -77,10 +74,9 @@ app.controller('FormCtrl', [
 app.controller('ResponsesCtrl', [
 
     '$scope',
-    '$http',
     'Responses',
 
-    function ($scope, $http, Responses) {
+    function ($scope, Responses) {
 
         // list of responses
         $scope.responses = Responses.list;
@@ -91,7 +87,7 @@ app.controller('ResponsesCtrl', [
          * @api public
          */
         $scope.isLoading = function () {
-            return $http.pendingRequests.length > 0;
+            return Responses.isLoading();
         };
 
         /**
