@@ -3,127 +3,236 @@
   font-size: 14px;
 }
 * {
+  z-index: 1;
   margin: 0;
   padding: 0;
   border: none;
+  outline: none;
   background: transparent;
   font-family: 'Lato', sans-serif;
+  color: inherit;
 }
-::-webkit-scrollbar {
-  width: 5px;
+ul {
+  list-style-type: none;
 }
-::-webkit-scrollbar-track {
-  background-color: #eeeeee;
+a {
+  text-decoration: none;
+  color: #555555;
 }
-::-webkit-scrollbar-thumb {
-  background-color: #cccccc;
+a:hover {
+  color: #aaaaaa;
 }
 body {
   overflow: hidden;
   background: #f6f6f6;
 }
-.forms {
+button,
+a.button {
+  display: inline-block;
+  text-transform: uppercase;
+  border-bottom: 1px solid #dddddd;
+  background: #eeeeee;
+  color: black;
+  cursor: pointer;
+  transition: background 250ms, border 250ms;
+  padding: 5px 10px;
+  font-size: 10px;
+}
+button:hover,
+a.button:hover,
+button:focus,
+a.button:focus {
+  color: black;
+  border-color: #bbbbbb;
+  background: #cccccc;
+}
+button:disabled,
+a.button:disabled,
+button:disabled:hover,
+a.button:disabled:hover {
+  background: #eeeeee;
+  border-bottom: 1px solid #dddddd;
+  color: #aaa;
+}
+button [class^="icon-"],
+a.button [class^="icon-"],
+button [class*=" icon-"],
+a.button [class*=" icon-"] {
+  font-size: 8px;
+}
+header {
+  min-height: 20px;
+  padding: 10px;
+  border-bottom: 1px solid #dddddd;
+  background: white;
+}
+header h2 {
+  line-height: 20px;
+  font-size: 14px;
+}
+header .buttons {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+header .buttons button,
+header .buttons .button {
+  display: inline-block;
+  text-transform: uppercase;
+  border-bottom: 1px solid #dddddd;
+  background: #eeeeee;
+  color: black;
+  cursor: pointer;
+  transition: background 250ms, border 250ms;
+  padding: 5px 10px;
+  font-size: 10px;
+  margin-left: 8px;
+}
+header .buttons button:hover,
+header .buttons .button:hover,
+header .buttons button:focus,
+header .buttons .button:focus {
+  color: black;
+  border-color: #bbbbbb;
+  background: #cccccc;
+}
+header .buttons button:disabled,
+header .buttons .button:disabled,
+header .buttons button:disabled:hover,
+header .buttons .button:disabled:hover {
+  background: #eeeeee;
+  border-bottom: 1px solid #dddddd;
+  color: #aaa;
+}
+header .buttons button [class^="icon-"],
+header .buttons .button [class^="icon-"],
+header .buttons button [class*=" icon-"],
+header .buttons .button [class*=" icon-"] {
+  font-size: 8px;
+}
+.projects {
   position: fixed;
-  top: 50px;
-  right: 550px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 200px;
+  background: #f6f6f6;
+  border-right: 1px solid #dddddd;
+}
+.projects nav {
+  position: absolute;
+  top: 41px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+}
+.projects nav a {
+  display: block;
+  padding: 10px;
+  border-bottom: 1px solid #dddddd;
+  font-size: 14px;
+  background: white;
+}
+.content {
+  position: fixed;
+  top: 0;
+  right: 501px;
+  bottom: 0;
+  left: 201px;
+}
+.content .forms {
+  position: absolute;
+  top: 41px;
+  right: 0;
   bottom: 0;
   left: 0;
   padding-bottom: 15px;
   overflow-y: auto;
 }
-.forms header {
-  z-index: 2;
-  position: fixed;
-  top: 0px;
-  right: 550px;
-  left: 0;
-  height: 50px;
-  padding-left: 20px;
-  border-bottom: 1px solid #dddddd;
-  background: white;
-}
-.forms header h1 {
-  line-height: 50px;
-  font-size: 20px;
-  color: #333;
-  font-weight: bold;
-}
-.forms header nav {
-  position: absolute;
-  top: 8px;
-  right: 10px;
-}
-.forms header nav button {
-  padding: 8px 16px;
-  cursor: pointer;
-  text-transform: uppercase;
-  font-size: 12px;
-  border-bottom: 1px solid #dddddd;
-  background: #eeeeee;
-  transition: all 250ms;
-}
-.forms header nav button:hover {
-  border-color: #bbbbbb;
-  background: #cccccc;
-}
-.forms header nav button:nth-of-type(n+2) {
-  margin-left: 10px;
-}
-.forms section {
-  text-align: center;
-}
-.forms section form {
+.content .forms form {
   position: relative;
-  display: inline-block;
+  display: block;
   width: 700px;
-  margin: 10px 10px 0 10px;
+  margin: 10px auto 0 auto;
   padding: 15px;
   text-align: left;
   border-bottom: 1px solid #dddddd;
   background: white;
 }
-.forms section form legend {
+.content .forms form legend {
   position: absolute;
   bottom: 15px;
   right: 15px;
   font-size: 12px;
 }
-.forms section form input[type=text],
-.forms section form textarea {
+.content .forms form label {
+  display: block;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  font-size: 10px;
+  color: #aaaaaa;
+}
+.content .forms form input[type=text],
+.content .forms form textarea {
   font-family: monospace;
   font-size: 14px;
   width: 672px;
   padding: 10px 14px;
   margin-bottom: 15px;
   border: 1px solid #dddddd;
+  background: #f6f6f6;
+}
+.content .forms form input[type=text]:focus,
+.content .forms form textarea:focus {
+  border-color: #bbbbbb;
   background: white;
 }
-.forms section form textarea {
+.content .forms form textarea {
   height: 300px;
+  background: #f6f6f6;
 }
-.forms section form button {
-  padding: 8px 16px;
-  cursor: pointer;
+.content .forms form button,
+.content .forms form .button {
+  display: inline-block;
   text-transform: uppercase;
-  font-size: 12px;
   border-bottom: 1px solid #dddddd;
   background: #eeeeee;
-  transition: all 250ms;
+  color: black;
+  cursor: pointer;
+  transition: background 250ms, border 250ms;
+  padding: 8px 16px;
+  font-size: 12px;
+  margin-right: 10px;
 }
-.forms section form button:hover {
+.content .forms form button:hover,
+.content .forms form .button:hover,
+.content .forms form button:focus,
+.content .forms form .button:focus {
+  color: black;
   border-color: #bbbbbb;
   background: #cccccc;
 }
-.forms section form button:nth-of-type(n+2) {
-  margin-left: 10px;
+.content .forms form button:disabled,
+.content .forms form .button:disabled,
+.content .forms form button:disabled:hover,
+.content .forms form .button:disabled:hover {
+  background: #eeeeee;
+  border-bottom: 1px solid #dddddd;
+  color: #aaa;
+}
+.content .forms form button [class^="icon-"],
+.content .forms form .button [class^="icon-"],
+.content .forms form button [class*=" icon-"],
+.content .forms form .button [class*=" icon-"] {
+  font-size: 10px;
 }
 .responses {
-  z-index: 3;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
-  width: 550px;
+  width: 500px;
   padding-bottom: 15px;
   border-left: 1px solid #dddddd;
   background: white;
@@ -138,35 +247,47 @@ body {
 }
 .responses div.loading {
   margin-top: 0px;
-  line-height: 50px;
-  padding: 0;
+  line-height: 20px;
+  padding: 10px;
   text-align: center;
-  color: #a6c776;
+  color: #aaaaaa;
+  font-size: 14px;
 }
 .responses div button {
-  padding: 5px 10px;
-  cursor: pointer;
+  display: inline-block;
   text-transform: uppercase;
-  font-size: 10px;
   border-bottom: 1px solid #dddddd;
   background: #eeeeee;
-  transition: all 250ms;
+  color: black;
+  cursor: pointer;
+  transition: background 250ms, border 250ms;
+  padding: 5px 10px;
+  font-size: 10px;
   position: absolute;
   top: 5px;
   right: 5px;
 }
-.responses div button:hover {
+.responses div button:hover,
+.responses div button:focus {
+  color: black;
   border-color: #bbbbbb;
   background: #cccccc;
 }
-.responses div button:nth-of-type(n+2) {
-  margin-left: 10px;
+.responses div button:disabled,
+.responses div button:disabled:hover {
+  background: #eeeeee;
+  border-bottom: 1px solid #dddddd;
+  color: #aaa;
+}
+.responses div button [class^="icon-"],
+.responses div button [class*=" icon-"] {
+  font-size: 8px;
 }
 .responses div pre {
   font-family: monospace;
   font-size: 14px;
 }
 .responses div.error pre {
-  color: red;
+  color: #ff0000;
   font-weight: bold;
 }

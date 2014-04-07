@@ -4,48 +4,166 @@
  * Application.
  * @module apitester
  */
-var app = angular.module('apitester', [ 'apitester.services' ]);
+var app = angular.module('apitester', [
+    'ngRoute',
+    'apitester.services'
+]);
+
+// set up routes
+app.config(function ($routeProvider) {
+
+    $routeProvider.when('/new-project', {
+        controller: 'NewProjectCtrl',
+        templateUrl: '/views/newProject.html'
+    });
+
+    $routeProvider.when('/project/:index', {
+        controller: 'ProjectCtrl',
+        templateUrl: '/views/project.html'
+    });
+
+    $routeProvider.when('/edit-project/:index', {
+        controller: 'EditProjectCtrl',
+        templateUrl: '/views/editProject.html'
+    });
+
+    $routeProvider.otherwise({
+        redirectTo: '/project/0'
+    });
+});
 
 /**
- * Form list controller.
+ * Project list controller.
  */
-app.controller('FormsCtrl', [
+app.controller('ProjectListCtrl', [
 
     '$scope',
-    '$filter',
-    'Forms',
+    'Projects',
 
-    function ($scope, $filter, Forms) {
+    function ($scope, Projects) {
 
-        // list of forms
-        $scope.forms = Forms.list;
+        // list of projects
+        $scope.projects = Projects.list();
+    }
+]);
 
-        // form list editor model
-        $scope.editor = {
-            show: false,
-            content: $filter('json')($scope.forms)
+/**
+ * New project controller.
+ */
+app.controller('NewProjectCtrl', [
+
+    '$scope',
+    '$location',
+    'Projects',
+
+    function ($scope, $location, Projects) {
+
+        $scope.project = {
+            name: '',
+            forms: ''
         };
 
         /**
-         * Toggles the form list editor form.
+         * Navigates back.
          * @api public
          */
-        $scope.toggleEditor = function () {
-            $scope.editor.show = !$scope.editor.show;
+        $scope.back = function () {
+            history.back();
         };
 
         /**
-         * Save the form list editor form.
+         * Saves a new project.
          * @api public
          */
-        $scope.saveForms = function () {
-            this.forms = Forms.setList($scope.editor.content);
+        $scope.save = function () {
+            var index = Projects.save($scope.project);
+            $location.path('/project/' + index);
         };
     }
 ]);
 
 /**
- * Form list item controller.
+ * Project controller.
+ */
+app.controller('ProjectCtrl', [
+
+    '$scope',
+    '$routeParams',
+    '$location',
+    'Projects',
+
+    function ($scope, $routeParams, $location, Projects) {
+
+        var index = $routeParams.index,
+            project = Projects.get(index);
+
+        if (!project) {
+            $location.path('/new-project');
+        }
+
+        $scope.index = index;
+        $scope.title = project.name;
+        $scope.project = project;
+
+        /**
+         * Removes the project.
+         * @api public
+         */
+        $scope.remove = function () {
+            Projects.remove(index);
+            $location.path('/project/0');
+        };
+    }
+]);
+
+/**
+ * Edit project controller.
+ */
+app.controller('EditProjectCtrl', [
+
+    '$scope',
+    '$routeParams',
+    '$filter',
+    '$location',
+    'Projects',
+
+    function ($scope, $routeParams, $filter, $location, Projects) {
+
+        var index = $routeParams.index,
+            project = Projects.get(index);
+
+        if (!project) {
+            $location.path('/new-project');
+        }
+
+        $scope.index = index;
+        $scope.title = project.name;
+        $scope.project = {
+            name: project.name,
+            forms: $filter('json')(project.forms)
+        };
+
+        /**
+         * Navigates back.
+         * @api public
+         */
+        $scope.back = function () {
+            history.back();
+        };
+
+        /**
+         * Updates the project.
+         * @api public
+         */
+        $scope.save = function () {
+            Projects.save($scope.project, index);
+            $location.path('/project/' + index);
+        };
+    }
+]);
+
+/**
+ * Form controller.
  */
 app.controller('FormCtrl', [
 

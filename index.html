@@ -4,48 +4,46 @@
     <meta charset="UTF-8">
     <title>API Tester</title>
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:300,400,700,900">
+    <link rel="stylesheet" type="text/css" href="styles/fonts.css">
     <link rel="stylesheet" type="text/css" href="styles/style.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.5/angular.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.5/angular-route.min.js"></script>
     <script type="text/javascript" src="scripts/services.js"></script>
     <script type="text/javascript" src="scripts/controllers/controllers.js"></script>
   </head>
   <body>
-    <div class="forms" ng-controller="FormsCtrl">
 
+    <!-- PROJECT LIST VIEW -->
+    <section class="projects" ng-controller="ProjectListCtrl">
       <header>
-        <h1>API Tester</h1>
-        <nav>
-          <button ng-click="toggleEditor()">Edit Forms</button>
-        </nav>
+        <h2>Projects</h2>
+        <div class="buttons">
+          <a href="#/new-project" class="button"><span class="icon-plus"></span> New</a>
+        </div>
       </header>
+      <nav>
+        <ul>
+          <li ng-repeat="project in projects">
+            <a href="#/project/{{$index}}">{{project.name}}</a>
+          </li>
+        </ul>
+      </nav>
+    </section>
 
-      <section ng-show="editor.show">
-        <form ng-submit="saveForms()">
-          <textarea placeholder="Forms as JSON" ng-model="editor.content"></textarea>
-          <button ng-click="toggleEditor()" type="submit">Save</button>
-          <button ng-click="toggleEditor()" type="button">Close</button>
-        </form>
-      </section>
+    <!-- MAIN CONTENT -->
+    <section class="content" ng-view>
+      <!-- NEW PROJECT VIEW -->
+      <!-- PROJECT VIEW -->
+      <!-- EDIT PROJECT VIEW -->
+    </section>
 
-      <section ng-repeat="form in forms" ng-controller="FormCtrl">
-        <form ng-submit="sendRequest()">
-          <legend>{{form.label}}</legend>
-          <input type="text"
-            ng-repeat="field in form.fields"
-            ng-model="form.data[field.name]"
-            name="{{field.name}}" placeholder="{{field.label}}">
-          <button type="submit">Submit</button>
-        </form>
-      </section>
-    </div>
-
-    <div class="responses" ng-controller="ResponsesCtrl">
+    <!-- RESPONSES VIEW -->
+    <section class="responses" ng-controller="ResponsesCtrl">
       <div class="loading" ng-show="isLoading()">loading ...</div>
       <div ng-repeat="response in responses" ng-class="{error: response.error}">
-        <button ng-click="remove($index)">remove</button>
+        <button ng-click="remove($index)"><span class="icon-close"></span> Remove</button>
         <pre>{{response.status}} : {{response.data | json}}</pre>
       </div>
-    </div>
-
+    </section>
   </body>
 </html>

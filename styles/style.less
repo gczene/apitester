@@ -1,51 +1,60 @@
-//=======================//
-//  VARIABLES + MIXINS   //
-//=======================//
+// VARIABLES
 
-@scrollbar-color: #eee;
-
+// colors
 @border-color: #ddd;
 @background-color: #f6f6f6;
-
+@font-color-dark: #555;
+@font-color-light: #aaa;
+@font-color-lighter: #ddd;
+@font-color-error: red;
 @button-background-color: #eee;
-@button-border-color: @border-color;
 
+// header
+@header-height: 20px;
+@header-padding: 10px;
+
+// project
+@projects-width: 200px;
+
+// forms
 @form-width: 700px;
 @input-padding-horizontal: 14px;
+@input-background-color: #f6f6f6;
 
-@responses-width: 550px;
+// responses
+@responses-width: 500px;
+
+// MIXINS
 
 .font-mono {
   font-family: monospace;
   font-size: 14px;
 }
 
-//=========//
-//  RESET  //
-//=========//
+// RESET
 
 * {
+  z-index: 1;
   margin: 0;
   padding: 0;
   border: none;
+  outline: none;
   background: transparent;
   font-family: 'Lato', sans-serif;
+  color: inherit;
 }
 
-//===========//
-//  GLOBALS  //
-//===========//
-
-::-webkit-scrollbar {
-  width: 5px;
+ul {
+  list-style-type: none;
 }
 
-::-webkit-scrollbar-track {
-  background-color: @scrollbar-color;
-}
+a {
+  text-decoration: none;
+  color: @font-color-dark;
 
-::-webkit-scrollbar-thumb {
-  background-color: @scrollbar-color - #222;
+  &:hover {
+    color: @font-color-light;
+  }
 }
 
 body {
@@ -53,75 +62,138 @@ body {
   background: @background-color;
 }
 
-.button(@padding: 8px, @fontSize: 12px) {
-  padding: @padding @padding * 2;
-  cursor: pointer;
-  text-transform: uppercase;
-  font-size: @fontSize;
-  border-bottom: 1px solid @button-border-color;
-  background: @button-background-color;
-  transition: all 250ms;
 
-  &:hover {
-    border-color: @button-border-color - #222;
+
+// BUTTONS
+
+.button(@size: 'small') {
+  display: inline-block;
+  text-transform: uppercase;
+  border-bottom: 1px solid @border-color;
+  background: @button-background-color;
+  color: black;
+  cursor: pointer;
+  transition: background 250ms, border 250ms;
+
+  &:hover, &:focus {
+    color: black;
+    border-color: @border-color - #222;
     background: @button-background-color - #222;
   }
 
-  &:nth-of-type(n+2) {
-    margin-left: 10px;
+  &:disabled, &:disabled:hover {
+    background: @button-background-color;
+    border-bottom: 1px solid @border-color;
+    color: #aaa;
+  }
+
+  & when (@size = 'small') {
+    padding: 5px 10px;
+    font-size: 10px;
+
+    [class^="icon-"], [class*=" icon-"] {
+      font-size: 8px;
+    }
+  }
+
+  & when (@size = 'medium') {
+    padding: 8px 16px;
+    font-size: 12px;
+
+    [class^="icon-"], [class*=" icon-"] {
+      font-size: 10px;
+    }
   }
 }
 
-//=========//
-//  FORMS  //
-//=========//
+// default buttons
+button, a.button {
+  .button('small');
+}
 
-.forms {
-  position: fixed;
-  top: 50px;
-  right: 550px;
-  bottom: 0;
-  left: 0;
-  padding-bottom: 15px;
-  overflow-y: auto;
 
-  header {
-    z-index: 2;
-    position: fixed;
-    top: 0px;
-    right: 550px;
-    left: 0;
-    height: 50px;
-    padding-left: 20px;
-    border-bottom: 1px solid @border-color;
-    background: white;
 
-    h1 {
-      line-height: 50px;
-      font-size: 20px;
-      color: #333;
-      font-weight: bold;
-    }
+// HEADERS
 
-    nav {
-      position: absolute;
-      top: 8px;
-      right: 10px;
+header {
+  min-height: @header-height;
+  padding: @header-padding;
+  border-bottom: 1px solid @border-color;
+  background: white;
 
-      button {
-        .button();
-      }
-    }
+  h2 {
+    line-height: @header-height;
+    font-size: 14px;
   }
 
-  section {
-    text-align: center;
+  .buttons {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    button, .button {
+      .button('small');
+      margin-left: 8px;
+    }
+  }
+}
+
+
+
+// PROJECTS
+
+.projects {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: @projects-width;
+  background: @background-color;
+  border-right: 1px solid @border-color;
+
+  nav {
+    position: absolute;
+    top: @header-height + @header-padding * 2 + 1px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow-y: auto;
+
+    a {
+      display: block;
+      padding: @header-padding;
+      border-bottom: 1px solid @border-color;
+      font-size: 14px;
+      background: white;
+    }
+  }
+}
+
+
+
+// CONTENT + FORMS
+
+.content {
+  position: fixed;
+  top: 0;
+  right: @responses-width + 1px;
+  bottom: 0;
+  left: @projects-width + 1px;
+
+  .forms {
+    position: absolute;
+    top: @header-height + @header-padding * 2 + 1px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding-bottom: 15px;
+    overflow-y: auto;
 
     form {
       position: relative;
-      display: inline-block;
+      display: block;
       width: @form-width;
-      margin: 10px 10px 0 10px;
+      margin: 10px auto 0 auto;
       padding: 15px;
       text-align: left;
       border-bottom: 1px solid @border-color;
@@ -134,33 +206,46 @@ body {
         font-size: 12px;
       }
 
-      input[type=text],
-      textarea {
+      label {
+        display: block;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+        font-size: 10px;
+        color: @font-color-light;
+      }
+
+      input[type=text], textarea {
         .font-mono();
         width: @form-width - 2 * @input-padding-horizontal;
         padding: 10px @input-padding-horizontal;
         margin-bottom: 15px;
         border: 1px solid @border-color;
-        background: white;
+        background: @input-background-color;
+
+        &:focus {
+          border-color: @border-color - #222;
+          background: white;
+        }
       }
 
       textarea {
         height: 300px;
+        background: @input-background-color;
       }
 
-      button {
-        .button();
+      button, .button {
+        .button('medium');
+        margin-right: 10px;
       }
     }
   }
 }
 
-//=============//
-//  RESPONSES  //
-//=============//
+
+
+// RESPONSES
 
 .responses {
-  z-index: 3;
   position: fixed;
   top: 0;
   right: 0;
@@ -180,14 +265,15 @@ body {
 
     &.loading {
       margin-top: 0px;
-      line-height: 50px;
-      padding: 0;
+      line-height: @header-height;
+      padding: @header-padding;
       text-align: center;
-      color: #a6c776;
+      color: @font-color-light;
+      font-size: 14px;
     }
 
     button {
-      .button(5px, 10px);
+      .button('small');
       position: absolute;
       top: 5px;
       right: 5px;
@@ -198,7 +284,7 @@ body {
     }
 
     &.error pre {
-      color: red;
+      color: @font-color-error;
       font-weight: bold;
     }
   }

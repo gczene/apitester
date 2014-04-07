@@ -1,0 +1,15 @@
+<header>
+  <h2>Create a Project</h2>
+  <div class="buttons">
+    <button class="button" ng-click="back()"><span class="icon-arrow-left"></span> Back</button>
+  </div>
+</header>
+<div class="forms">
+  <form ng-submit="save()">
+    <!-- <label for="name">Project Name</label> -->
+    <input type="text" name="name" placeholder="Project Name" autofocus="autofocus" ng-model="project.name">
+    <!-- <label for="name">Froms as JSON</label> -->
+    <textarea name="forms" placeholder="Froms as JSON" ng-model="project.forms"></textarea>
+    <button type="submit">Create Project</button>
+  </form>
+</div>

@@ -7,56 +7,106 @@
 var services = angular.module('apitester.services', []);
 
 /**
- * Forms service.
+ * Projects service.
  */
-services.service('Forms', function () {
+services.service('Projects', function () {
 
-    var self = this, demoForms, updateLocalStorage;
+    var demoProjects, projects, updateLocalStorage;
 
-    demoForms = [{
-        url: 'http://api.openweathermap.org/data/2.5/weather',
-        method: 'get',
-        label: 'Searching by city name',
-        data: {},
-        fields: [{ name: 'q', label: 'city name' }]
-    }, {
-        url: 'http://api.openweathermap.org/data/2.5/weather',
-        method: 'get',
-        label: 'Seaching by geographic coordinats',
-        data: {},
-        fields: [
-            { name: 'lat', label: 'latitude' },
-            { name: 'lon', label: 'longitude' }
-        ]
-    }, {
-        url: 'http://api.openweathermap.org/data/2.5/weather',
-        method: 'get',
-        label: 'Seaching by city ID',
-        data: {},
-        fields: [{ name: 'id', label: 'city ID' }]
+    // demo projects
+    demoProjects = [{
+        name: 'OpenWeatherMap',
+        forms: [{
+            url: 'http://api.openweathermap.org/data/2.5/weather',
+            method: 'get',
+            label: 'Searching by city name',
+            data: {},
+            fields: [{ name: 'q', label: 'city name' }]
+        }, {
+            url: 'http://api.openweathermap.org/data/2.5/weather',
+            method: 'get',
+            label: 'Seaching by geographic coordinats',
+            data: {},
+            fields: [
+                { name: 'lat', label: 'latitude' },
+                { name: 'lon', label: 'longitude' }
+            ]
+        }, {
+            url: 'http://api.openweathermap.org/data/2.5/weather',
+            method: 'get',
+            label: 'Seaching by city ID',
+            data: {},
+            fields: [{ name: 'id', label: 'city ID' }]
+        }]
     }];
 
-    // restore the list of forms from the localStorage (or use the demo)
-    this.list = angular.fromJson(localStorage.forms) || demoForms;
+    // list of projects
+    projects = angular.fromJson(localStorage.projects) || demoProjects;
 
     /**
      * Updates the localStorage copy.
      * @api private
      */
     updateLocalStorage = function () {
-        localStorage.forms = angular.toJson(self.list);
+        localStorage.projects = angular.toJson(projects);
     };
 
     /**
-     * Overwrites the list of forms.
-     * @param {string} list JSON
+     * Returns list of projects.
      * @returns {Array}
      * @api public
      */
-    this.setList = function (list) {
-        this.list = angular.fromJson(list);
+    this.list = function () {
+        return projects;
+    };
+
+    /**
+     * Returns a project by it's index.
+     * @param {Number} index
+     * @returns {Object|Boolean}
+     */
+    this.get = function (index) {
+        return projects[index] || false;
+    };
+
+    /**
+     * Creates / updates a project.
+     * @param {Object} project
+     * @param {?Number} index
+     * @return {Number}
+     */
+    this.save = function (project, index) {
+
+        // update existing project
+        if (!!index) {
+            projects[index] = {
+                name: project.name,
+                forms: angular.fromJson(project.forms || '[]')
+            };
+
+        // create new project
+        } else {
+            index = projects.push({
+                name: project.name,
+                forms: angular.fromJson(project.forms || '[]')
+            });
+        }
+
         updateLocalStorage();
-        return this.list;
+        return index;
+    };
+
+    /**
+     * Removes a project by it's index.
+     * @param {Number} index
+     * @api public
+     */
+    this.remove = function (index) {
+        // 0 === demo > cannot be removed !!!
+        if (index > 0) {
+            projects.splice(index, 1);
+            updateLocalStorage();
+        }
     };
 });
 
