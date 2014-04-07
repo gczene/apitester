@@ -1,6 +1,6 @@
-/************************/
-/*  VARIABLES + MIXINS  */
-/************************/
+//=======================//
+//  VARIABLES + MIXINS   //
+//=======================//
 
 @scrollbar-color: #eee;
 
@@ -20,9 +20,9 @@
   font-size: 14px;
 }
 
-/***********/
-/*  RESET  */
-/***********/
+//=========//
+//  RESET  //
+//=========//
 
 * {
   margin: 0;
@@ -32,9 +32,9 @@
   font-family: 'Lato', sans-serif;
 }
 
-/*************/
-/*  GLOBALS  */
-/*************/
+//===========//
+//  GLOBALS  //
+//===========//
 
 ::-webkit-scrollbar {
   width: 5px;
@@ -72,9 +72,9 @@ body {
   }
 }
 
-/***********/
-/*  FORMS  */
-/***********/
+//=========//
+//  FORMS  //
+//=========//
 
 .forms {
   position: fixed;
@@ -155,9 +155,9 @@ body {
   }
 }
 
-/***************/
-/*  RESPONSES  */
-/***************/
+//=============//
+//  RESPONSES  //
+//=============//
 
 .responses {
   z-index: 3;
@@ -177,6 +177,14 @@ body {
     margin: 5px 10px 0 10px;
     border-bottom: 1px solid @border-color;
     background: white;
+
+    &.loading {
+      margin-top: 0px;
+      line-height: 50px;
+      padding: 0;
+      text-align: center;
+      color: #a6c776;
+    }
 
     button {
       .button(5px, 10px);

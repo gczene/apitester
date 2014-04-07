@@ -1,13 +1,7 @@
-/************************/
-/*  VARIABLES + MIXINS  */
-/************************/
 .font-mono {
   font-family: monospace;
   font-size: 14px;
 }
-/***********/
-/*  RESET  */
-/***********/
 * {
   margin: 0;
   padding: 0;
@@ -15,9 +9,6 @@
   background: transparent;
   font-family: 'Lato', sans-serif;
 }
-/*************/
-/*  GLOBALS  */
-/*************/
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -31,9 +22,6 @@ body {
   overflow: hidden;
   background: #f6f6f6;
 }
-/***********/
-/*  FORMS  */
-/***********/
 .forms {
   position: fixed;
   top: 50px;
@@ -129,9 +117,6 @@ body {
 .forms section form button:nth-of-type(n+2) {
   margin-left: 10px;
 }
-/***************/
-/*  RESPONSES  */
-/***************/
 .responses {
   z-index: 3;
   position: fixed;
@@ -150,6 +135,13 @@ body {
   margin: 5px 10px 0 10px;
   border-bottom: 1px solid #dddddd;
   background: white;
+}
+.responses div.loading {
+  margin-top: 0px;
+  line-height: 50px;
+  padding: 0;
+  text-align: center;
+  color: #a6c776;
 }
 .responses div button {
   padding: 5px 10px;

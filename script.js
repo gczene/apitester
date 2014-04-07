@@ -190,12 +190,22 @@ app.controller('FormController', [
 app.controller('ResponseListController', [
 
     '$scope',
+    '$http',
     'Responses',
 
-    function ($scope, Responses) {
+    function ($scope, $http, Responses) {
 
         // list of responses
         $scope.responses = Responses.list;
+
+        /**
+         * Returns loading state.
+         * @returns {Boolean}
+         * @api public
+         */
+        $scope.isLoading = function () {
+            return $http.pendingRequests.length > 0;
+        };
 
         /**
          * Removes a response by it's index.

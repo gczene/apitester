@@ -39,6 +39,7 @@
   </div>
 
   <div class="responses" ng-controller="ResponseListController">
+    <div class="loading" ng-show="isLoading()">loading ...</div>
     <div ng-repeat="response in responses" ng-class="{error: response.error}">
       <button ng-click="remove($index)">remove</button>
       <pre>{{response.status}} : {{response.data | json}}</pre>
