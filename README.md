@@ -54,7 +54,7 @@ Demo JSON (for http://api.openweathermap.org):
 ]
 ```
 
-![Screenshot](https://raw.githubusercontent.com/gaborsar/apitester/master/screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/gaborsar/apitester/master/img/screenshot.png)
 
 ## License
 MIT
