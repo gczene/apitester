@@ -6,7 +6,6 @@
  */
 var app = angular.module('apitester', [ 'apitester.services' ]);
 
-
 /**
  * Form list controller.
  */
