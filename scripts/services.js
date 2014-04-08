@@ -148,6 +148,10 @@ services.service('Responses', [
          * @api public
          */
         this.sendRequest = function (options) {
+            if ('get' === options.method) {
+                options.params = options.data;
+                delete options.data;
+            }
             $http(options)
                 .success(this.addSuccess)
                 .error(this.addError);

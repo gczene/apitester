@@ -180,7 +180,7 @@ app.controller('FormCtrl', [
             Responses.sendRequest({
                 url: $scope.form.url,
                 method: $scope.form.method,
-                params: $scope.form.data
+                data: $scope.form.data
             });
         };
     }
