@@ -1,0 +1,18 @@
+{
+  "name": "apitester",
+  "version": "0.0.1",
+  "homepage": "https://github.com/gaborsar/apitester",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gaborsar/apitester"
+  },
+  "bugs": {
+    "url": "https://github.com/gaborsar/apitester/issues"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-jslint": "~1.1.8",
+    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-contrib-less": "~0.11.0"
+  }
+}
