@@ -54,7 +54,7 @@ module.exports = function (grunt) {
         files: {
           'app/styles/style.min.css': [
             'app/styles/fonts.css',
-            'app/styles/style.less'
+            'app/styles/less/style.less'
           ]
         }
       }
