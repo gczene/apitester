@@ -47,4 +47,3 @@ angular.module('apitester.services', []);
 angular.module('apitester.controllers', [
     'apitester.services'
 ]);
-

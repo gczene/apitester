@@ -4,7 +4,7 @@ A lightweight API tester tool.
 
 ## Usage
 
-Click on edit forms, and edit your forms JSON.
+Click on edit project, and edit your forms JSON.
 
 Demo JSON (for http://api.openweathermap.org):
 
@@ -14,9 +14,10 @@ Demo JSON (for http://api.openweathermap.org):
     "url": "http://api.openweathermap.org/data/2.5/weather",
     "method": "get",
     "label": "Searching by city name",
-    "data": {},
-    "fields":
-    [
+    "data": {
+      "q": "London"
+    },
+    "fields": [
       {
         "name": "q",
         "label": "city name"

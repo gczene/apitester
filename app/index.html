@@ -11,14 +11,18 @@
   </head>
   <body>
 
+  <header>
+    <h2>API Tester</h2>
+    <div class="buttons">
+      <a href="#" class="button"><span class="icon-plus"></span> New Project</a>
+      <a href="#" class="button"><span class="icon-pencil"></span> Edit Project</a>
+      <a href="#" class="button"><span class="icon-close"></span> Delete Project</a>
+    </div>
+  </header>
+
     <!-- PROJECT LIST VIEW -->
     <section class="projects" ng-controller="ProjectListCtrl">
-      <header>
-        <h2>Projects</h2>
-        <div class="buttons">
-          <a href="#/new-project" class="button"><span class="icon-plus"></span> New</a>
-        </div>
-      </header>
+
       <nav>
         <ul>
           <li ng-repeat="project in projects">
@@ -26,6 +30,12 @@
           </li>
         </ul>
       </nav>
+
+      <form class="filter">
+        <i class="icon-search"></i>
+        <input type="text" placeholder="filter ..."></input>
+      </form>
+
     </section>
 
     <!-- MAIN CONTENT -->
@@ -36,12 +46,22 @@
     </section>
 
     <!-- RESPONSES VIEW -->
-    <section class="responses" ng-controller="ResponsesCtrl">
-      <div class="loading" ng-show="isLoading()">loading ...</div>
-      <div ng-repeat="response in responses" ng-class="{error: response.error}">
-        <button ng-click="remove($index)"><span class="icon-close"></span> Remove</button>
-        <pre>{{response.status}} : {{response.data | json}}</pre>
+    <section class="responses" ng-controller="ResponsesCtrl" ng-class="{loading: isLoading()}">
+
+      <div class="loader">loading ...</div>
+
+      <div class="list">
+        <div class="response" ng-repeat="response in responses" ng-class="{error: response.error}">
+          <button ng-click="remove($index)"><span class="icon-close"></span> Remove</button>
+          <pre>{{response.status}} : {{response.data | json}}</pre>
+        </div>
       </div>
+
+      <form class="filter">
+        <i class="icon-search"></i>
+        <input type="text" placeholder="filter ..."></input>
+      </form>
+
     </section>
   </body>
 </html>
