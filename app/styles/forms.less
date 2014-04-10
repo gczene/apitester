@@ -1,0 +1,52 @@
+.forms {
+  position: fixed;
+  top: @header-height-total;
+  right: @responses-width;
+  bottom: 0;
+  left: @projects-width;
+  padding-bottom: @form-margin;
+
+  form {
+    position: relative;
+    display: block;
+    width: @form-width;
+    margin: @form-margin auto 0 auto;
+    padding: @form-padding;
+    border-radius: @border-radius;
+    text-align: left;
+    background: @bg-white;
+
+    legend {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      font-size: @font-size-small;
+    }
+
+    input[type=text], textarea {
+      .font-mono();
+      width: @form-width - 2 * @input-padding-horizontal - 2px;
+      line-height: @input-line-height;
+      padding: 0 @input-padding-horizontal;
+      margin-bottom: @input-margin-bottom;
+      border-radius: @border-radius;
+      border: 1px solid @border-color;
+      background: @bg-lighter;
+      transition: background @transition-speed;
+
+      &:focus {
+        border-color: @border-color-darker;
+        background: @bg-white;
+      }
+    }
+
+    textarea {
+      height: @textarea-height;
+    }
+
+    button, .button {
+      .button('base', 'default');
+      margin-right: 10px;
+    }
+  }
+}

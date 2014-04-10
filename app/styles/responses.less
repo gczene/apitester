@@ -1,0 +1,70 @@
+.responses {
+  position: fixed;
+  top: @header-height-total;
+  right: 0;
+  bottom: 0;
+  width: @responses-width;
+  background: @bg;
+
+  .loader {
+    position: absolute;
+    top: -@responses-loader-height;
+    right: 0;
+    left: 0;
+    height: @responses-loader-height;
+    line-height: @responses-loader-height;
+    background: @bg-white;
+    text-align: center;
+    font-size: @font-size-base;
+    color: @font-color-lighter;
+    transition: top @transition-speed;
+  }
+
+  .list {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: @filter-height + 1px;
+    left: 0;
+    transition: top @transition-speed;
+
+    .response {
+      position: relative;
+      padding: 15px;
+      background: @bg-lighter;
+      border-bottom: 1px solid @border-color;
+
+      button {
+        .button('small', 'default');
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+
+      pre {
+        .font-mono();
+        color: @font-color-darker;
+      }
+
+      &.error pre {
+        color: @font-color-error;
+        font-weight: bold;
+      }
+    }
+  }
+
+  &.loading {
+
+    .loader {
+      top: 0;
+    }
+
+    .list {
+      top: @responses-loader-height + 1px;
+    }
+  }
+
+  .filter input[type=text] {
+    width: @responses-width - 55px;
+  }
+}

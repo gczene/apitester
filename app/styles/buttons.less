@@ -1,0 +1,44 @@
+.button(@size: 'small', @style: 'default') {
+  display: inline-block;
+  text-transform: uppercase;
+  border-radius: @border-radius;
+  color: @btn-color;
+  cursor: pointer;
+  transition: background @transition-speed, border @transition-speed;
+
+  & when (@style = 'default') {
+    border-bottom: @btn-border solid @btn-border-color;
+    background: @btn-bg;
+
+    &:hover, &:focus {
+      border-bottom: @btn-border solid @btn-border-color-hover;
+      background: @btn-bg-hover;
+    }
+  }
+
+  & when (@style = 'header') {
+    background: @btn-bg;
+
+    &:hover, &:focus {
+      background: @btn-bg-hover;
+    }
+  }
+
+  & when (@size = 'small') {
+    padding: @btn-padding-small;
+    font-size: @font-size-smaller;
+
+    [class^="icon-"], [class*=" icon-"] {
+      font-size: @font-size-smaller - 2px;
+    }
+  }
+
+  & when (@size = 'base') {
+    padding: @btn-padding-base;
+    font-size: @font-size-small;
+
+    [class^="icon-"], [class*=" icon-"] {
+      font-size: @font-size-small - 2px;
+    }
+  }
+}

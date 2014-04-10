@@ -1,0 +1,74 @@
+// COLOR SKIN
+@color-01: #EDEBE6;
+@color-02: #D6E1C7;
+@color-03: #94C7B6;
+@color-04: #403B33;
+@color-05: #D3643B;
+
+// BACKGROUND COLORS
+@bg-darker: darken(@color-01, 3%);
+@bg: @color-01;
+@bg-lighter: lighten(@color-01, 3%);
+@bg-white: white;
+
+// BORDERS
+@border-color-darker: darken(@color-01, 16%);
+@border-color: darken(@color-01, 8%);
+@border-radius: 2px;
+
+// FONT COLORS
+@font-color-darker: #555;
+@font-color: #aaa;
+@font-color-lighter: #ddd;
+@font-color-white: white;
+@font-color-error: red;
+
+// FONT SIZES
+@font-size-smaller: 10px;
+@font-size-small: 12px;
+@font-size-base: 14px;
+
+// TRANSITIONS
+@transition-speed: 250ms;
+
+// BUTTONS
+@btn-bg: darken(@color-02, 20%);
+@btn-bg-hover: darken(@btn-bg, 20%);
+@btn-border-color: darken(@btn-bg, 20%);
+@btn-border-color-hover: darken(@btn-border-color, 20%);
+@btn-color: white;
+@btn-border: 2px;
+@btn-padding-small: 5px 10px;
+@btn-padding-base: 8px 16px;
+
+// HEADERS
+@header-height: 20px;
+@header-padding: 10px;
+@header-height-total: @header-height + @header-padding * 2;
+@header-bg: @color-04;
+
+// FILTERS
+@filter-height: 40px;
+@filter-input-height: 20px;
+@filter-bg: rgba(255, 255, 255, 0.95);
+@filter-pos-right: 55px;
+
+// FORMS
+@form-width: 500px;
+@form-margin: 20px;
+@form-padding: 15px;
+@input-line-height: 20px;
+@input-padding-horizontal: 14px;
+@input-margin-bottom: 15px;
+@textarea-height: 400px;
+
+// PANELS (PROJECTS, RESPONSES)
+@projects-width: 200px;
+@responses-width: 500px;
+@responses-loader-height: 40px;
+
+// MIXIN
+.font-mono {
+  font-family: monospace;
+  font-size: @font-size-base;
+}

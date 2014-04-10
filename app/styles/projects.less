@@ -1,0 +1,28 @@
+.projects {
+  position: fixed;
+  top: @header-height-total;
+  bottom: 0;
+  left: 0;
+  width: @projects-width;
+  background: @bg;
+
+  nav {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: @filter-height + 1px;
+    left: 0;
+
+    a {
+      display: block;
+      padding: @header-padding;
+      border-bottom: 1px solid @border-color;
+      background: @bg-lighter;
+      font-size: @font-size-base;
+    }
+  }
+
+  .filter input[type=text] {
+    width: @projects-width - @filter-pos-right;
+  }
+}

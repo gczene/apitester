@@ -1,0 +1,27 @@
+.filter {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: @filter-height;
+  line-height: @filter-height;
+  border-top: 1px solid @border-color;
+  background: @filter-bg;
+  overflow: hidden;
+
+  .icon-search {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    color: @font-color-lighter;
+  }
+
+  input[type=text] {
+    .font-mono();
+    position: absolute;
+    top: (@filter-height - @filter-input-height) / 2;
+    left: 40px;
+    height: @filter-input-height;
+    line-height: @filter-input-height;
+  }
+}

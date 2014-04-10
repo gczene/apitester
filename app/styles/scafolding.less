@@ -1,0 +1,27 @@
+* {
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  text-decoration: none;
+  font-family: 'Lato', sans-serif;
+  color: inherit;
+  list-style-type: none;
+  overflow: auto;
+}
+
+a {
+  color: @font-color-darker;
+  transition: color @transition-speed;
+
+  &:hover {
+    color: @font-color;
+  }
+}
+
+body {
+  overflow: hidden;
+  background: @bg-darker;
+}
