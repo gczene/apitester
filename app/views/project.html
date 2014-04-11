@@ -47,7 +47,7 @@
   <!-- list of responses -->
   <div class="list">
     <div class="response" ng-repeat="response in project.responses | filter:searchText" ng-class="{error: response.error}">
-      <button ng-click="remove($index)"><span class="icon-close"></span> Remove</button>
+      <button ng-click="remove(response)"><span class="icon-close"></span> Remove</button>
       <pre>{{response.status}} : {{response.data | json}}</pre>
     </div>
   </div>

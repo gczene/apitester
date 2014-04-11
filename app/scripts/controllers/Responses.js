@@ -23,10 +23,11 @@ angular.module('apitester.controllers').controller('ResponsesCtrl', [
 
         /**
          * Removes a response by it's index.
-         * @param {Number} index
+         * @param {Object} response
          * @api public
          */
-        $scope.remove = function (index) {
+        $scope.remove = function (response) {
+            var index = $scope.project.responses.indexOf(response);
             $scope.project.responses.splice(index, 1);
             projects.save($scope.project);
         };
