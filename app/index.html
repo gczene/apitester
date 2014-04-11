@@ -9,32 +9,5 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.5/angular-route.min.js"></script>
     <script type="text/javascript" src="scripts/script.min.js"></script>
   </head>
-  <body>
-
-    <!-- MAIN CONTENT -->
-    <div class="content" ng-view>
-      <!-- NEW PROJECT VIEW -->
-      <!-- PROJECT VIEW -->
-      <!-- EDIT PROJECT VIEW -->
-    </div>
-
-    <!-- RESPONSES VIEW -->
-    <section class="responses" ng-controller="ResponsesCtrl" ng-class="{loading: isLoading()}">
-
-      <div class="loader">loading ...</div>
-
-      <div class="list">
-        <div class="response" ng-repeat="response in responses" ng-class="{error: response.error}">
-          <button ng-click="remove($index)"><span class="icon-close"></span> Remove</button>
-          <pre>{{response.status}} : {{response.data | json}}</pre>
-        </div>
-      </div>
-
-      <form class="filter">
-        <i class="icon-search"></i>
-        <input type="text" placeholder="filter ..."></input>
-      </form>
-
-    </section>
-  </body>
+  <body ng-view></body>
 </html>
