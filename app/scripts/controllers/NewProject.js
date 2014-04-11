@@ -15,9 +15,10 @@ angular.module('apitester.controllers').controller('NewProjectCtrl', [
         // project model
         $scope.project = {
             name: '',
-            forms: '',
+            forms: [],
             responses: []
         };
+        $scope.formsJson = '';
 
         /**
          * Saves a new project.
@@ -25,8 +26,9 @@ angular.module('apitester.controllers').controller('NewProjectCtrl', [
          */
         $scope.save = function () {
             var index;
-            $scope.project.forms = angular
-                .fromJson($scope.project.forms || '[]');
+            // load form form JSON
+            $scope.project.forms = angular.fromJson($scope.formsJson || '[]');
+            // save project
             index = projects.save($scope.project);
             $location.path('/project/' + index);
         };

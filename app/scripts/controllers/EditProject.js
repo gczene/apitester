@@ -24,7 +24,7 @@ angular.module('apitester.controllers').controller('EditProjectCtrl', [
         }
 
         // filter forms to editor
-        $scope.project.forms = $filter('json')($scope.project.forms);
+        $scope.formsJson = $filter('json')($scope.project.forms);
 
         /**
          * Updates the project.
@@ -32,8 +32,9 @@ angular.module('apitester.controllers').controller('EditProjectCtrl', [
          */
         $scope.save = function () {
             var index;
-            $scope.project.forms = angular
-                .fromJson($scope.project.forms || '[]');
+            // load form from JSON
+            $scope.project.forms = angular.fromJson($scope.formsJson || '[]');
+            // save project
             index = projects.save($scope.project);
             $location.path('/project/' + index);
         };
