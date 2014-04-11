@@ -6,49 +6,56 @@ angular.module('apitester.services').service('projects', function () {
 
     'use strict';
 
-    var demoProjects, projects, updateLocalStorage;
+    var demoProjects, projects, restoreState, saveState;
 
-    // demo projects
+    // demo project, some simple forms for the public API of OpenWeatherMap
     demoProjects = [{
         name: 'OpenWeatherMap',
         forms: [{
             url: 'http://api.openweathermap.org/data/2.5/weather',
             method: 'get',
             label: 'Searching by city name',
-            data: {},
-            fields: [{ name: 'q', label: 'city name' }]
+            fields: [{ name: 'q', label: 'city name' }],
+            data: {}
         }, {
             url: 'http://api.openweathermap.org/data/2.5/weather',
             method: 'get',
             label: 'Seaching by geographic coordinats',
-            data: {},
             fields: [
                 { name: 'lat', label: 'latitude' },
                 { name: 'lon', label: 'longitude' }
-            ]
+            ],
+            data: {}
         }, {
             url: 'http://api.openweathermap.org/data/2.5/weather',
             method: 'get',
             label: 'Seaching by city ID',
-            data: {},
-            fields: [{ name: 'id', label: 'city ID' }]
-        }]
+            fields: [{ name: 'id', label: 'city ID' }],
+            data: {}
+        }],
+        responses: {}
     }];
 
-    // list of projects
-    projects = angular.fromJson(localStorage.projects) || demoProjects;
-
     /**
-     * Updates the localStorage copy.
+     * Restores projects from localStorage.
      * @api private
      */
-    updateLocalStorage = function () {
+    restoreState = function () {
+        projects = angular.fromJson(localStorage.projects) || demoProjects;
+    };
+    restoreState();
+
+    /**
+     * Saves prpjects to localStorage.
+     * @api private
+     */
+    saveState = function () {
         localStorage.projects = angular.toJson(projects);
     };
 
     /**
-     * Returns list of projects.
-     * @returns {Array}
+     * Returns the list of projects.
+     * @returns {Object}
      * @api public
      */
     this.list = function () {
@@ -58,7 +65,7 @@ angular.module('apitester.services').service('projects', function () {
     /**
      * Returns a project by it's index.
      * @param {Number} index
-     * @returns {Object|Boolean}
+     * @returns {Object}
      * @api public
      */
     this.get = function (index) {
@@ -66,43 +73,34 @@ angular.module('apitester.services').service('projects', function () {
     };
 
     /**
-     * Creates / updates a project.
+     * Saves a single project.
      * @param {Object} project
-     * @param {?Number} index
      * @returns {Number}
      * @api public
      */
-    this.save = function (project, index) {
-
-        // update existing project
-        if (!!index) {
-            projects[index] = {
-                name: project.name,
-                forms: angular.fromJson(project.forms || '[]')
-            };
-
-        // create new project
+    this.save = function (project) {
+        var index = projects.indexOf(project);
+        if (index !== -1) {
+            projects[index] = project;
         } else {
-            index = projects.push({
-                name: project.name,
-                forms: angular.fromJson(project.forms || '[]')
-            });
+            index = projects.push(project) - 1;
         }
-
-        updateLocalStorage();
+        saveState();
         return index;
     };
 
     /**
-     * Removes a project by it's index.
-     * @param {Number} index
+     * Removes a single project.
+     * @param {Object} project
+     * @returns {Number} Number of projects
      * @api public
      */
-    this.remove = function (index) {
-        // 0 === demo > cannot be removed !!!
+    this.remove = function (project) {
+        var index = projects.indexOf(project);
         if (index > 0) {
             projects.splice(index, 1);
-            updateLocalStorage();
+            saveState();
         }
+        return projects.length;
     };
 });

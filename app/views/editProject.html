@@ -1,15 +1,8 @@
-<header>
-  <h2>{{title}}</h2>
-  <div class="buttons">
-    <button class="button" ng-click="back()"><span class="icon-arrow-left"></span> Back</button>
-  </div>
-</header>
-<div class="forms">
+<section class="edit-project">
+  <h1>Edit Project</h1>
   <form ng-submit="save()">
-    <!-- <label for="name">Project Name</label> -->
     <input type="text" name="name" placeholder="Project Name" autofocus="autofocus" ng-model="project.name">
-    <!-- <label for="name">Forms as JSON</label> -->
     <textarea name="forms" placeholder="Froms as JSON" ng-model="project.forms"></textarea>
     <button type="submit">Save Project</button>
   </form>
-</div>
+</section>

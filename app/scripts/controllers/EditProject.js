@@ -14,35 +14,27 @@ angular.module('apitester.controllers').controller('EditProjectCtrl', [
 
         'use strict';
 
-        var index = $routeParams.index,
-            project = projects.get(index);
+        // project model
+        $scope.index = $routeParams.index;
+        $scope.project = projects.get($scope.index);
 
         // redirect if project cannot be found
-        if (!project) {
+        if (!$scope.project) {
             $location.path('/new-project');
         }
 
-        $scope.index = index;
-        $scope.title = project.name;
-        $scope.project = {
-            name: project.name,
-            forms: $filter('json')(project.forms)
-        };
-
-        /**
-         * Navigates back.
-         * @api public
-         */
-        $scope.back = function () {
-            history.back();
-        };
+        // filter forms to editor
+        $scope.project.forms = $filter('json')($scope.project.forms);
 
         /**
          * Updates the project.
          * @api public
          */
         $scope.save = function () {
-            projects.save($scope.project, index);
+            var index;
+            $scope.project.forms = angular
+                .fromJson($scope.project.forms || '[]');
+            index = projects.save($scope.project);
             $location.path('/project/' + index);
         };
     }

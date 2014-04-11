@@ -1,4 +1,4 @@
-.forms {
+section.forms {
   position: fixed;
   top: @header-height-total;
   right: @responses-width;
@@ -23,11 +23,12 @@
       font-size: @font-size-small;
     }
 
-    input[type=text], textarea {
+    input[type=text] {
       .font-mono();
       width: @form-width - 2 * @input-padding-horizontal - 2px;
+      height: @input-line-height;
       line-height: @input-line-height;
-      padding: 0 @input-padding-horizontal;
+      padding: @input-padding-vertical @input-padding-horizontal;
       margin-bottom: @input-margin-bottom;
       border-radius: @border-radius;
       border: 1px solid @border-color;
@@ -40,13 +41,8 @@
       }
     }
 
-    textarea {
-      height: @textarea-height;
-    }
-
     button, .button {
       .button('base', 'default');
-      margin-right: 10px;
     }
   }
 }

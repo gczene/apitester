@@ -13,25 +13,22 @@ angular.module('apitester.controllers').controller('ProjectCtrl', [
 
         'use strict';
 
-        var index = $routeParams.index,
-            project = projects.get(index);
+        // project model
+        $scope.index = $routeParams.index;
+        $scope.project = projects.get($scope.index);
 
         // redirect if project cannot be found
-        if (!project) {
+        if (!$scope.project) {
             $location.path('/new-project');
         }
-
-        $scope.index = index;
-        $scope.title = project.name;
-        $scope.project = project;
 
         /**
          * Removes the project.
          * @api public
          */
         $scope.remove = function () {
-            projects.remove(index);
-            $location.path('/project/0');
+            projects.remove($scope.project);
+            $location.path('/');
         };
     }
 ]);

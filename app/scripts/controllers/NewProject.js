@@ -15,15 +15,8 @@ angular.module('apitester.controllers').controller('NewProjectCtrl', [
         // project model
         $scope.project = {
             name: '',
-            forms: ''
-        };
-
-        /**
-         * Navigates back.
-         * @api public
-         */
-        $scope.back = function () {
-            history.back();
+            forms: '',
+            responses: []
         };
 
         /**
@@ -31,7 +24,10 @@ angular.module('apitester.controllers').controller('NewProjectCtrl', [
          * @api public
          */
         $scope.save = function () {
-            var index = projects.save($scope.project);
+            var index;
+            $scope.project.forms = angular
+                .fromJson($scope.project.forms || '[]');
+            index = projects.save($scope.project);
             $location.path('/project/' + index);
         };
     }
