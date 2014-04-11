@@ -4,6 +4,7 @@
   h1 {
     padding: @h1-padding-vertical 0;
     font-size: @font-size-largest;
+    color: @font-color-dark;
   }
 
   form {
@@ -18,6 +19,7 @@
 
   input[type=text], textarea {
     .font-mono();
+    display: block;
     width: @form-width - 2 * @input-padding-horizontal - 2px;
     height: @input-line-height;
     line-height: @input-line-height;
@@ -25,11 +27,11 @@
     margin-bottom: @input-margin-bottom;
     border-radius: @border-radius;
     border: 1px solid @border-color;
-    background: @bg-lighter;
+    background: @bg-light;
     transition: background @transition-speed;
 
     &:focus {
-      border-color: @border-color-darker;
+      border-color: @border-color-dark;
       background: @bg-white;
     }
   }

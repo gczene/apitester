@@ -13,11 +13,15 @@ section.projects {
     bottom: @filter-height;
     left: 0;
 
+    li.active {
+      border-right: 5px solid @border-color;
+    }
+
     a {
       display: block;
       padding: @header-padding;
       border-bottom: 1px solid @border-color;
-      background: @bg-lighter;
+      background: @bg-light;
       font-size: @font-size-base;
     }
   }

@@ -26,7 +26,7 @@ angular.module('apitester.controllers').controller('NewProjectCtrl', [
          */
         $scope.save = function () {
             var index;
-            // load form form JSON
+            // load form from JSON
             $scope.project.forms = angular.fromJson($scope.formsJson || '[]');
             // save project
             index = projects.save($scope.project);

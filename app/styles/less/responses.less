@@ -16,7 +16,7 @@ section.responses {
     background: @bg-white;
     text-align: center;
     font-size: @font-size-base;
-    color: @font-color-lighter;
+    color: @font-color;
     transition: top @transition-speed;
   }
 
@@ -31,7 +31,7 @@ section.responses {
     .response {
       position: relative;
       padding: 15px;
-      background: @bg-lighter;
+      background: @bg-light;
       border-bottom: 1px solid @border-color;
 
       button {
@@ -43,7 +43,7 @@ section.responses {
 
       pre {
         .font-mono();
-        color: @font-color-darker;
+        color: @font-color-dark;
       }
 
       &.error pre {

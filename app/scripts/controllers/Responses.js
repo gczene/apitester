@@ -5,14 +5,12 @@
 angular.module('apitester.controllers').controller('ResponsesCtrl', [
 
     '$scope',
-    'responses',
+    '$http',
+    'projects',
 
-    function ($scope, responses) {
+    function ($scope, $http, projects) {
 
         'use strict';
-
-        // list of responses
-        $scope.responses = responses.list;
 
         /**
          * Returns loading state.
@@ -20,7 +18,7 @@ angular.module('apitester.controllers').controller('ResponsesCtrl', [
          * @api public
          */
         $scope.isLoading = function () {
-            return responses.isLoading();
+            return $http.pendingRequests.length > 0;
         };
 
         /**
@@ -29,7 +27,8 @@ angular.module('apitester.controllers').controller('ResponsesCtrl', [
          * @api public
          */
         $scope.remove = function (index) {
-            responses.remove(index);
+            $scope.project.responses.splice(index, 1);
+            projects.save($scope.project);
         };
     }
 ]);

@@ -33,7 +33,7 @@ angular.module('apitester.services').service('projects', function () {
             fields: [{ name: 'id', label: 'city ID' }],
             data: {}
         }],
-        responses: {}
+        responses: []
     }];
 
     /**

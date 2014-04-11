@@ -14,7 +14,7 @@
   <!-- list of projects -->
   <nav>
     <ul>
-      <li ng-repeat="project in projects">
+      <li ng-repeat="project in projects | filter:searchText" ng-class="{active: $index == index}">
         <a href="#/project/{{$index}}">{{project.name}}</a>
       </li>
     </ul>
@@ -23,13 +23,13 @@
   <!-- filter -->
   <form class="filter">
     <i class="icon-search"></i>
-    <input type="text" placeholder="filter ..."></input>
+    <input type="text" placeholder="filter ..." ng-model="searchText"></input>
   </form>
 </section>
 
 <!-- FORMS -->
 <section class="forms">
-  <form ng-repeat="form in project.forms" ng-controller="FormCtrl" ng-submit="sendRequest()">
+  <form ng-repeat="form in project.forms" ng-controller="FormCtrl" ng-submit="submit()">
     <legend>{{form.label}}</legend>
     <span ng-repeat="field in form.fields">
       <input type="text" ng-model="form.data[field.name]" name="{{field.name}}" placeholder="{{field.label}}">
@@ -46,7 +46,7 @@
 
   <!-- list of responses -->
   <div class="list">
-    <div class="response" ng-repeat="response in responses" ng-class="{error: response.error}">
+    <div class="response" ng-repeat="response in project.responses | filter:searchText" ng-class="{error: response.error}">
       <button ng-click="remove($index)"><span class="icon-close"></span> Remove</button>
       <pre>{{response.status}} : {{response.data | json}}</pre>
     </div>
@@ -55,6 +55,6 @@
   <!-- filter -->
   <form class="filter">
     <i class="icon-search"></i>
-    <input type="text" placeholder="filter ..."></input>
+    <input type="text" placeholder="filter ..." ng-model="searchText"></input>
   </form>
 </section>
