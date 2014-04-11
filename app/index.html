@@ -11,40 +11,12 @@
   </head>
   <body>
 
-  <!-- HEADER -->
-  <header>
-    <h1>API Tester</h1>
-    <div class="buttons">
-      <a href="#" class="button"><span class="icon-plus"></span> New Project</a>
-      <a href="#" class="button"><span class="icon-pencil"></span> Edit Project</a>
-      <a href="#" class="button"><span class="icon-close"></span> Delete Project</a>
-    </div>
-  </header>
-
-    <!-- PROJECT LIST VIEW -->
-    <section class="projects" ng-controller="ProjectListCtrl">
-
-      <nav>
-        <ul>
-          <li ng-repeat="project in projects">
-            <a href="#/project/{{$index}}">{{project.name}}</a>
-          </li>
-        </ul>
-      </nav>
-
-      <form class="filter">
-        <i class="icon-search"></i>
-        <input type="text" placeholder="filter ..."></input>
-      </form>
-
-    </section>
-
     <!-- MAIN CONTENT -->
-    <section class="content" ng-view>
+    <div class="content" ng-view>
       <!-- NEW PROJECT VIEW -->
       <!-- PROJECT VIEW -->
       <!-- EDIT PROJECT VIEW -->
-    </section>
+    </div>
 
     <!-- RESPONSES VIEW -->
     <section class="responses" ng-controller="ResponsesCtrl" ng-class="{loading: isLoading()}">

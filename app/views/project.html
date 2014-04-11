@@ -1,10 +1,60 @@
+<!-- HEADER -->
+<header>
+  <h1>API Tester</h1>
+  <div class="buttons">
+    <a href="#" class="button"><span class="icon-plus"></span> New Project</a>
+    <a href="#" class="button"><span class="icon-pencil"></span> Edit Project</a>
+    <a href="#" class="button"><span class="icon-close"></span> Delete Project</a>
+  </div>
+</header>
+
+<!-- PROJECT -->
+<section class="projects" ng-controller="ProjectListCtrl">
+
+  <!-- list of projects -->
+  <nav>
+    <ul>
+      <li ng-repeat="project in projects">
+        <a href="#/project/{{$index}}">{{project.name}}</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- filter -->
+  <form class="filter">
+    <i class="icon-search"></i>
+    <input type="text" placeholder="filter ..."></input>
+  </form>
+</section>
+
+<!-- FORMS -->
 <div class="forms">
   <form ng-repeat="form in project.forms" ng-controller="FormCtrl" ng-submit="sendRequest()">
     <legend>{{form.label}}</legend>
     <span ng-repeat="field in form.fields">
-      <!-- <label for="{{field.name}}">{{field.label}}</label> -->
       <input type="text" ng-model="form.data[field.name]" name="{{field.name}}" placeholder="{{field.label}}">
     </span>
     <button type="submit">Submit</button>
   </form>
 </div>
+
+<!-- RESPONSES -->
+<section class="responses" ng-controller="ResponsesCtrl" ng-class="{loading: isLoading()}">
+
+  <!-- loading indicator -->
+  <div class="loader">loading ...</div>
+
+  <!-- list of responses -->
+  <div class="list">
+    <div class="response" ng-repeat="response in responses" ng-class="{error: response.error}">
+      <button ng-click="remove($index)"><span class="icon-close"></span> Remove</button>
+      <pre>{{response.status}} : {{response.data | json}}</pre>
+    </div>
+  </div>
+
+  <!-- filter -->
+  <form class="filter">
+    <i class="icon-search"></i>
+    <input type="text" placeholder="filter ..."></input>
+  </form>
+</section>
