@@ -14,21 +14,20 @@ Demo JSON (for http://api.openweathermap.org):
     "url": "http://api.openweathermap.org/data/2.5/weather",
     "method": "get",
     "label": "Searching by city name",
-    "data": {
-      "q": "London"
-    },
     "fields": [
       {
         "name": "q",
         "label": "city name"
       }
-    ]
+    ],
+    "data": {
+      "q": "default city name value ..."
+    }
   },
   {
     "url": "http://api.openweathermap.org/data/2.5/weather",
     "method": "get",
     "label": "Seaching by geographic coordinats",
-    "data": {},
     "fields": [
       {
         "name": "lat",
@@ -38,24 +37,25 @@ Demo JSON (for http://api.openweathermap.org):
         "name": "lon",
         "label": "longitude"
       }
-    ]
+    ],
+    "data": {}
   },
   {
     "url": "http://api.openweathermap.org/data/2.5/weather",
     "method": "get",
     "label": "Seaching by city ID",
-    "data": {},
     "fields": [
       {
         "name": "id",
         "label": "city ID"
       }
-    ]
+    ],
+    "data": {}
   }
 ]
 ```
 
-![Screenshot](https://raw.githubusercontent.com/gaborsar/apitester/master/img/screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/gaborsar/apitester/master/app/img/screenshot-002.png)
 
 ## License
 MIT
