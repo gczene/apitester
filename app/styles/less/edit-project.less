@@ -1,0 +1,47 @@
+.edit-project {
+  text-align: center;
+
+  h1 {
+    padding: @h1-padding-vertical 0;
+    font-size: @font-size-largest;
+  }
+
+  form {
+    display: block;
+    width: @form-width;
+    margin: 0 auto;
+    padding: @form-padding;
+    border-radius: @border-radius;
+    text-align: left;
+    background: @bg-white;
+  }
+
+  input[type=text], textarea {
+    .font-mono();
+    width: @form-width - 2 * @input-padding-horizontal - 2px;
+    height: @input-line-height;
+    line-height: @input-line-height;
+    padding: @input-padding-vertical @input-padding-horizontal;
+    margin-bottom: @input-margin-bottom;
+    border-radius: @border-radius;
+    border: 1px solid @border-color;
+    background: @bg-lighter;
+    transition: background @transition-speed;
+
+    &:focus {
+      border-color: @border-color-darker;
+      background: @bg-white;
+    }
+  }
+
+  textarea {
+    height: @textarea-height;
+  }
+
+  button, .button {
+    .button('base', 'default');
+  }
+}
+
+
+
