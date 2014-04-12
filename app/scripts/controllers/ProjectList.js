@@ -1,6 +1,11 @@
 /**
  * Project list controller.
- * @module apitester/controllers
+ *
+ * @name ProjectListCtrl
+ * @constructor
+ *
+ * @param {!Object} $scope
+ * @param {!apitester.services.Projects} projects
  */
 angular.module('apitester.controllers').controller('ProjectListCtrl', [
 

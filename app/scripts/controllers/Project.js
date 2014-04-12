@@ -1,6 +1,13 @@
 /**
  * Project controller.
- * @module apitester/controllers
+ *
+ * @name ProjectCtrl
+ * @constructor
+ *
+ * @param {!Object} $scope
+ * @param {!Object} $routeParams
+ * @param {!Object} $location
+ * @param {!apitester.services.Projects} projects
  */
 angular.module('apitester.controllers').controller('ProjectCtrl', [
 
@@ -24,7 +31,6 @@ angular.module('apitester.controllers').controller('ProjectCtrl', [
 
         /**
          * Removes the project.
-         * @api public
          */
         $scope.remove = function () {
             projects.remove($scope.project);

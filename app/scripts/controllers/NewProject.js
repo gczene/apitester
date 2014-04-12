@@ -1,6 +1,12 @@
 /**
  * New project controller.
- * @module apitester/controllers
+ *
+ * @name NewProjectCtrl
+ * @constructor
+ *
+ * @param {!Object} $scope
+ * @param {!Object} $location
+ * @param {!apitester.services.Projects} projects
  */
 angular.module('apitester.controllers').controller('NewProjectCtrl', [
 
@@ -22,7 +28,6 @@ angular.module('apitester.controllers').controller('NewProjectCtrl', [
 
         /**
          * Saves a new project.
-         * @api public
          */
         $scope.save = function () {
             var index;

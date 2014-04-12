@@ -1,6 +1,12 @@
 /**
  * Form controller.
- * @module apitester/controllers
+ *
+ * @name FormCtrl
+ * @constructor
+ *
+ * @param {!Object} $scope
+ * @param {!Object} $http
+ * @param {!apitester.services.Projects} projects
  */
 angular.module('apitester.controllers').controller('FormCtrl', [
 
@@ -16,9 +22,9 @@ angular.module('apitester.controllers').controller('FormCtrl', [
 
         /**
          * Saves a sucessfull request's response.
+         *
          * @param {Object} data
          * @param {Number} status
-         * @api public
          */
         onSuccess = function (data, status) {
             $scope.project.responses.unshift({
@@ -31,9 +37,9 @@ angular.module('apitester.controllers').controller('FormCtrl', [
 
         /**
          * Saves an unsucessfull request's response.
+         *
          * @param {Object} data
          * @param {Number} status
-         * @api public
          */
         onError = function (data, status) {
             $scope.project.responses.unshift({
@@ -46,7 +52,6 @@ angular.module('apitester.controllers').controller('FormCtrl', [
 
         /**
          * Sends an API request.
-         * @api public
          */
         $scope.submit = function () {
             var options;

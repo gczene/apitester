@@ -1,6 +1,12 @@
 /**
  * Response list controller.
- * @module apitester/controllers
+ *
+ * @name ResponsesCtrl
+ * @constructor
+ *
+ * @param {!Object} $scope
+ * @param {!Object} $http
+ * @param {!apitester.services.Projects} projects
  */
 angular.module('apitester.controllers').controller('ResponsesCtrl', [
 
@@ -14,8 +20,8 @@ angular.module('apitester.controllers').controller('ResponsesCtrl', [
 
         /**
          * Returns loading state.
+         *
          * @returns {Boolean}
-         * @api public
          */
         $scope.isLoading = function () {
             return $http.pendingRequests.length > 0;
@@ -23,8 +29,8 @@ angular.module('apitester.controllers').controller('ResponsesCtrl', [
 
         /**
          * Removes a response by it's index.
+         *
          * @param {Object} response
-         * @api public
          */
         $scope.remove = function (response) {
             var index = $scope.project.responses.indexOf(response);

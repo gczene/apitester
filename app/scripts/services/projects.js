@@ -1,6 +1,8 @@
 /**
  * Projects service.
- * @module apitester/services
+ *
+ * @name Projects
+ * @constructor
  */
 angular.module('apitester.services').service('projects', function () {
 
@@ -8,7 +10,7 @@ angular.module('apitester.services').service('projects', function () {
 
     var demoProjects, projects, restoreState, saveState;
 
-    // demo project, some simple forms for the public API of OpenWeatherMap
+    // demo projects, some simple forms for the public API of OpenWeatherMap
     demoProjects = [{
         name: 'OpenWeatherMap',
         forms: [{
@@ -38,7 +40,6 @@ angular.module('apitester.services').service('projects', function () {
 
     /**
      * Restores projects from localStorage.
-     * @api private
      */
     restoreState = function () {
         projects = angular.fromJson(localStorage.projects) || demoProjects;
@@ -47,7 +48,6 @@ angular.module('apitester.services').service('projects', function () {
 
     /**
      * Saves prpjects to localStorage.
-     * @api private
      */
     saveState = function () {
         localStorage.projects = angular.toJson(projects);
@@ -55,8 +55,8 @@ angular.module('apitester.services').service('projects', function () {
 
     /**
      * Returns the list of projects.
+     *
      * @returns {Object}
-     * @api public
      */
     this.list = function () {
         return projects;
@@ -64,9 +64,9 @@ angular.module('apitester.services').service('projects', function () {
 
     /**
      * Returns a project by it's index.
+     *
      * @param {Number} index
      * @returns {Object}
-     * @api public
      */
     this.get = function (index) {
         return projects[index] || false;
@@ -74,9 +74,9 @@ angular.module('apitester.services').service('projects', function () {
 
     /**
      * Saves a single project.
+     *
      * @param {Object} project
      * @returns {Number}
-     * @api public
      */
     this.save = function (project) {
         var index = projects.indexOf(project);
@@ -91,13 +91,13 @@ angular.module('apitester.services').service('projects', function () {
 
     /**
      * Removes a single project.
+     *
      * @param {Object} project
      * @returns {Number} Number of projects
-     * @api public
      */
     this.remove = function (project) {
         var index = projects.indexOf(project);
-        if (index > 0) {
+        if (index > 0) { // projects[0] = demo
             projects.splice(index, 1);
             saveState();
         }

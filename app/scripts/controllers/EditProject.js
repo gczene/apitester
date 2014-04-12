@@ -1,6 +1,14 @@
 /**
- * Edit project controller.
- * @module apitester/controllers
+ * Edit Project controller.
+ *
+ * @name EditProjectCtrl
+ * @constructor
+ *
+ * @param {!Object} $scope
+ * @param {!Object} $routeParams
+ * @param {!Object} $filter
+ * @param {!Object} $location
+ * @param {!apitester.services.Projects} projects
  */
 angular.module('apitester.controllers').controller('EditProjectCtrl', [
 
@@ -28,7 +36,6 @@ angular.module('apitester.controllers').controller('EditProjectCtrl', [
 
         /**
          * Updates the project.
-         * @api public
          */
         $scope.save = function () {
             var index;
