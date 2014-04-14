@@ -2,8 +2,8 @@
 <header>
   <h1>API Tester</h1>
   <div class="buttons">
-    <a href="#/new-project/" class="button"><span class="icon-plus"></span> New Project</a>
-    <a href="#/edit-project/{{index}}" class="button"><span class="icon-pencil"></span> Edit Project</a>
+    <a ng-ref="#/new-project/" class="button"><span class="icon-plus"></span> New Project</a>
+    <a ng-href="#/edit-project/{{index}}" class="button"><span class="icon-pencil"></span> Edit Project</a>
     <a class="button" ng-show="{{index > 0}}" ng-click="remove()"><span class="icon-close"></span> Delete Project</a>
   </div>
 </header>
@@ -15,7 +15,7 @@
   <nav>
     <ul>
       <li ng-repeat="project in projects | filter:searchText" ng-class="{active: $index == index}">
-        <a href="#/project/{{$index}}">{{project.name}}</a>
+        <a ng-href="#/project/{{$index}}">{{project.name}}</a>
       </li>
     </ul>
   </nav>

@@ -16,6 +16,7 @@ module.exports = function (grunt) {
         directives:{
           browser: true,
           unparam: true,
+          indent: 2,
           predef: [
             'angular'
           ]
@@ -33,12 +34,12 @@ module.exports = function (grunt) {
             'app/scripts/app.js',
             'app/scripts/services/projects.js',
             'app/scripts/services/responses.js',
-            'app/scripts/controllers/ProjectList.js',
-            'app/scripts/controllers/NewProject.js',
-            'app/scripts/controllers/EditProject.js',
-            'app/scripts/controllers/Project.js',
-            'app/scripts/controllers/Form.js',
-            'app/scripts/controllers/Responses.js'
+            'app/scripts/controllers/projectList.js',
+            'app/scripts/controllers/newProject.js',
+            'app/scripts/controllers/editProject.js',
+            'app/scripts/controllers/project.js',
+            'app/scripts/controllers/form.js',
+            'app/scripts/controllers/responses.js'
           ]
         }
       }
