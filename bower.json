@@ -1,0 +1,13 @@
+{
+  "name": "apitester",
+  "version": "0.0.1",
+  "homepage": "https://github.com/gaborsar/apitester",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "1.3.x",
+    "angular-route": "1.3.x",
+    "angular-loader": "1.3.x",
+    "angular-mocks": "1.3.x"
+  }
+}

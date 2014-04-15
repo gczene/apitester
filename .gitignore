@@ -1,5 +1,3 @@
-# ignore external modules
-node_modules/*
-
-# ignore npm log files
+node_modules/
+app/bower_components/
 npm-debug.log

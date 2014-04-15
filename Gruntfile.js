@@ -8,7 +8,7 @@ module.exports = function (grunt) {
       client: {
         src: [
           'app/scripts/*.js',
-          'app/scripts/*/**.js'
+          'app/scripts/**/*.js'
         ],
         exclude: [
           'app/scripts/script.min.js'
