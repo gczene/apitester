@@ -27,6 +27,7 @@ describe('EditProject Controller', function () {
   }));
 
   describe('invalid index parameter', function () {
+
     var routeParams, ctrl;
 
     beforeEach(inject(function ($controller) {
@@ -51,6 +52,7 @@ describe('EditProject Controller', function () {
   });
 
   describe('valid index parameter', function () {
+
     var routeParams, ctrl;
 
     beforeEach(inject(function ($controller) {
