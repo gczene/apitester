@@ -1,8 +1,8 @@
 <section class="edit-project">
   <h1>Edit Project</h1>
-  <form ng-submit="save()">
-    <input type="text" name="name" placeholder="Project Name" autofocus="autofocus" ng-model="project.name">
-    <textarea name="forms" placeholder="Froms as JSON" ng-model="formsJson"></textarea>
+  <form data-ng-submit="save()">
+    <input type="text" name="name" placeholder="Project Name" autofocus="autofocus" data-ng-model="project.name">
+    <textarea name="forms" placeholder="Froms as JSON" data-ng-model="formsJson"></textarea>
     <button type="submit">Save Project</button>
   </form>
 </section>

@@ -2,20 +2,20 @@
 <header>
   <h1>API Tester</h1>
   <div class="buttons">
-    <a ng-ref="#/new-project/" class="button"><span class="icon-plus"></span> New Project</a>
-    <a ng-href="#/edit-project/{{index}}" class="button"><span class="icon-pencil"></span> Edit Project</a>
-    <a class="button" ng-show="{{index > 0}}" ng-click="remove()"><span class="icon-close"></span> Delete Project</a>
+    <a data-ng-ref="#/new-project/" class="button"><span class="icon-plus"></span> New Project</a>
+    <a data-ng-href="#/edit-project/{{index}}" class="button"><span class="icon-pencil"></span> Edit Project</a>
+    <a class="button" data-ng-show="{{index > 0}}" data-ng-click="remove()"><span class="icon-close"></span> Delete Project</a>
   </div>
 </header>
 
 <!-- PROJECT -->
-<section class="projects" ng-controller="ProjectListCtrl">
+<section class="projects" data-ng-controller="ProjectListCtrl">
 
   <!-- list of projects -->
   <nav>
     <ul>
-      <li ng-repeat="project in projects | filter:searchText" ng-class="{active: $index == index}">
-        <a ng-href="#/project/{{$index}}">{{project.name}}</a>
+      <li data-ng-repeat="project in projects | filter:searchText" data-ng-class="{active: $index == index}">
+        <a data-ng-href="#/project/{{$index}}">{{project.name}}</a>
       </li>
     </ul>
   </nav>
@@ -23,31 +23,31 @@
   <!-- filter -->
   <form class="filter">
     <i class="icon-search"></i>
-    <input type="text" placeholder="filter ..." ng-model="searchText"></input>
+    <input type="text" placeholder="filter ..." data-ng-model="searchText"></input>
   </form>
 </section>
 
 <!-- FORMS -->
 <section class="forms">
-  <form ng-repeat="form in project.forms" ng-controller="FormCtrl" ng-submit="submit()">
+  <form data-ng-repeat="form in project.forms" data-ng-controller="FormCtrl" data-ng-submit="submit()">
     <legend>{{form.label}}</legend>
-    <span ng-repeat="field in form.fields">
-      <input type="text" ng-model="form.data[field.name]" name="{{field.name}}" placeholder="{{field.label}}">
+    <span data-ng-repeat="field in form.fields">
+      <input type="text" data-ng-model="form.data[field.name]" name="{{field.name}}" placeholder="{{field.label}}">
     </span>
     <button type="submit">Submit</button>
   </form>
 </section>
 
 <!-- RESPONSES -->
-<section class="responses" ng-controller="ResponsesCtrl" ng-class="{loading: isLoading()}">
+<section class="responses" data-ng-controller="ResponsesCtrl" data-ng-class="{loading: isLoading()}">
 
   <!-- loading indicator -->
   <div class="loader">loading ...</div>
 
   <!-- list of responses -->
   <div class="list">
-    <div class="response" ng-repeat="response in project.responses | filter:searchText" ng-class="{error: response.error}">
-      <button ng-click="remove(response)"><span class="icon-close"></span> Remove</button>
+    <div class="response" data-ng-repeat="response in project.responses | filter:searchText" data-ng-class="{error: response.error}">
+      <button data-ng-click="remove(response)"><span class="icon-close"></span> Remove</button>
       <pre>{{response.status}} : {{response.data | json}}</pre>
     </div>
   </div>
@@ -55,6 +55,6 @@
   <!-- filter -->
   <form class="filter">
     <i class="icon-search"></i>
-    <input type="text" placeholder="filter ..." ng-model="searchText"></input>
+    <input type="text" placeholder="filter ..." data-ng-model="searchText"></input>
   </form>
 </section>
