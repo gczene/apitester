@@ -2,12 +2,10 @@ describe('ResponsesCtrl', function () {
 
   'use strict';
 
-  var http, scope, httpBackend, projects, ctrl;
+  var scope, httpBackend, projects, ctrl;
 
   beforeEach(module('apitesterApp.controllers'));
-  beforeEach(inject(function ($http, $rootScope, $httpBackend, $controller) {
-
-    http = $http;
+  beforeEach(inject(function ($rootScope, $httpBackend, $controller) {
 
     scope = $rootScope.$new();
 
