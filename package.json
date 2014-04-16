@@ -26,6 +26,6 @@
   "scripts": {
     "postinstall": "bower install",
     "grunt": "grunt",
-    "karma": "karma start test/karma.conf.js"
+    "karma": "karma start karma.conf.js"
   }
 }
