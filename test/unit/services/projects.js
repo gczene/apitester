@@ -4,9 +4,7 @@ describe('Projects Service', function () {
 
   var store, service;
 
-
   beforeEach(module('apitesterApp.services'));
-
 
   beforeEach(inject(function (projects) {
     store = {};
@@ -22,16 +20,13 @@ describe('Projects Service', function () {
     service = projects;
   }));
 
-
   it('should return one demo project', function () {
     expect(service.list().length).toBe(1);
   });
 
-
   it('should return a project by index', function () {
     expect(service.get(0)).toBe(service.list()[0]);
   });
-
 
   it('should save a new project', function () {
     var project, index;
@@ -41,7 +36,6 @@ describe('Projects Service', function () {
     expect(service.get(index)).toBe(project);
     expect(store.projects).toBe(angular.toJson(service.list()));
   });
-
 
   it('should remove a project', function () {
     var project, index;

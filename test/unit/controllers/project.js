@@ -4,9 +4,7 @@ describe('Project Controller', function () {
 
   var scope, routeParams, filter, location, projects, ctrl;
 
-
   beforeEach(module('apitesterApp.controllers'));
-
 
   beforeEach(inject(function ($rootScope, $location, $controller) {
     scope = $rootScope.$new();
@@ -34,12 +32,10 @@ describe('Project Controller', function () {
     });
   }));
 
-
   it('should load a project by index', function () {
     expect(scope.index).toBe(1);
     expect(scope.project).toBe(projects.project);
   });
-
 
   it('should remove an existing project', function () {
     location.path('/test');

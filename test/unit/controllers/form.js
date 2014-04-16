@@ -4,9 +4,7 @@ describe('Form Controller', function () {
 
   var scope, httpBackend, projects, ctrl;
 
-
   beforeEach(module('apitesterApp.controllers'));
-
 
   beforeEach(inject(function ($httpBackend, $rootScope, $controller) {
     httpBackend = $httpBackend;
@@ -34,7 +32,6 @@ describe('Form Controller', function () {
     });
   }));
 
-
   it('should submit and save a success response', function () {
     httpBackend.expectGET('/test').respond({success: true});
     scope.submit();
@@ -46,7 +43,6 @@ describe('Form Controller', function () {
       error: false
     }]);
   });
-
 
   it('should submit and save an error response', function () {
     httpBackend.expectGET('/test').respond(500, {error: true});

@@ -4,9 +4,7 @@ describe('NewProject Controller', function () {
 
   var scope, location, projects, ctrl;
 
-
   beforeEach(module('apitesterApp.controllers'));
-
 
   beforeEach(inject(function ($rootScope, $location, $controller) {
     scope = $rootScope.$new();
@@ -24,7 +22,6 @@ describe('NewProject Controller', function () {
       projects: projects
     });
   }));
-
 
   it('should create a new project', function () {
     location.path('/test');

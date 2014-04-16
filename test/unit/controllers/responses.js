@@ -4,9 +4,7 @@ describe('Responses Controller', function () {
 
   var scope, httpBackend, projects, ctrl;
 
-
   beforeEach(module('apitesterApp.controllers'));
-
 
   beforeEach(inject(function ($rootScope, $httpBackend, $controller) {
     scope = $rootScope.$new();
@@ -26,11 +24,9 @@ describe('Responses Controller', function () {
     });
   }));
 
-
   it('should return the loading state', function () {
     expect(scope.isLoading()).toBe(false);
   });
-
 
   it('should remove a response by index', function () {
     expect(scope.project.responses).toEqual([1, 2, 3]);

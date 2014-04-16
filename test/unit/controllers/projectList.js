@@ -4,9 +4,7 @@ describe('ProjectList Controller', function () {
 
   var scope, projects, ctrl;
 
-
   beforeEach(module('apitesterApp.controllers'));
-
 
   beforeEach(inject(function ($rootScope, $controller) {
     scope = $rootScope.$new();
@@ -20,7 +18,6 @@ describe('ProjectList Controller', function () {
       projects: projects
     });
   }));
-
 
   it('should load the list of projects', function () {
     expect(scope.projects).toEqual(projects.list());
