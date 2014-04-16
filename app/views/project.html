@@ -23,18 +23,20 @@
   <!-- filter -->
   <form class="filter">
     <i class="icon-search"></i>
-    <input type="text" placeholder="filter ..." data-ng-model="searchText"></input>
+    <input type="text" placeholder="filter ..." data-ng-model="searchText">
   </form>
 </section>
 
 <!-- FORMS -->
 <section class="forms">
   <form data-ng-repeat="form in project.forms" data-ng-controller="FormCtrl" data-ng-submit="submit()">
-    <legend>{{form.label}}</legend>
-    <span data-ng-repeat="field in form.fields">
-      <input type="text" data-ng-model="form.data[field.name]" name="{{field.name}}" placeholder="{{field.label}}">
-    </span>
-    <button type="submit">Submit</button>
+    <fieldset>
+      <legend>{{form.label}}</legend>
+      <span data-ng-repeat="field in form.fields">
+        <input type="text" data-ng-model="form.data[field.name]" name="{{field.name}}" placeholder="{{field.label}}">
+      </span>
+      <button type="submit">Submit</button>
+    </fieldset>
   </form>
 </section>
 
@@ -55,6 +57,6 @@
   <!-- filter -->
   <form class="filter">
     <i class="icon-search"></i>
-    <input type="text" placeholder="filter ..." data-ng-model="searchText"></input>
+    <input type="text" placeholder="filter ..." data-ng-model="searchText">
   </form>
 </section>
