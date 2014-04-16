@@ -2,13 +2,12 @@ describe('Project Controller', function () {
 
   'use strict';
 
-  var scope, routeParams, location, projects, ctrl;
+  var scope, location, projects;
 
   beforeEach(module('apitesterApp.controllers'));
 
-  beforeEach(inject(function ($rootScope, $location, $controller) {
+  beforeEach(inject(function ($rootScope, $location) {
     scope = $rootScope.$new();
-    routeParams = {index: 1};
     location = $location;
     projects = {
       project: {
@@ -24,33 +23,64 @@ describe('Project Controller', function () {
         return 1;
       }
     };
-    ctrl = $controller('ProjectCtrl', {
-      $scope: scope,
-      $routeParams: routeParams,
-      $location: $location,
-      projects: projects
-    });
   }));
 
-  // jslint:unused(ctrl)...
-  it('should create a controller', function () {
-    expect(ctrl).not.toBeUndefined();
-  });
+  describe('invalid index parameter', function () {
+    var routeParams, ctrl;
 
-  it('should load a project by index', function () {
-    expect(scope.index).toBe(1);
-    expect(scope.project).toBe(projects.project);
-  });
+    beforeEach(inject(function ($controller) {
+      routeParams = {index: -1};
+      ctrl = $controller('ProjectCtrl', {
+        $scope: scope,
+        $routeParams: routeParams,
+        $location: location,
+        projects: projects
+      });
+    }));
 
-  it('should remove an existing project', function () {
-    location.path('/test');
-    expect(scope.project).toEqual({
-      name: 'test',
-      forms: [{test: true}],
-      responses: []
+    // jslint:unused(ctrl)...
+    it('should create a controller', function () {
+      expect(ctrl).not.toBeUndefined();
     });
-    scope.remove();
-    expect(projects.project).toBeUndefined();
-    expect(location.path()).toBe('/');
+
+    it('should redirect', function () {
+      expect(location.path()).toBe('/new-project');
+    });
+  });
+
+  describe('valid index parameter', function () {
+    var routeParams, ctrl;
+
+    beforeEach(inject(function ($controller) {
+      routeParams = {index: 1};
+      ctrl = $controller('ProjectCtrl', {
+        $scope: scope,
+        $routeParams: routeParams,
+        $location: location,
+        projects: projects
+      });
+    }));
+
+    // jslint:unused(ctrl)...
+    it('should create a controller', function () {
+      expect(ctrl).not.toBeUndefined();
+    });
+
+    it('should load a project by index', function () {
+      expect(scope.index).toBe(routeParams.index);
+      expect(scope.project).toBe(projects.project);
+    });
+
+    it('should remove an existing project', function () {
+      location.path('/test');
+      expect(scope.project).toEqual({
+        name: 'test',
+        forms: [{test: true}],
+        responses: []
+      });
+      scope.remove();
+      expect(projects.project).toBeUndefined();
+      expect(location.path()).toBe('/');
+    });
   });
 });

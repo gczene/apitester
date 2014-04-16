@@ -28,12 +28,23 @@ describe('Projects Service', function () {
     expect(service.get(0)).toBe(service.list()[0]);
   });
 
-  it('should save a new project', function () {
+  it('should create a new project', function () {
     var project, index;
     project = {test: true};
     index = service.save(project);
     expect(index).toBe(1);
     expect(service.get(index)).toBe(project);
+    expect(store.projects).toBe(angular.toJson(service.list()));
+  });
+
+  it('should update an existing new project', function () {
+    var project, oldIndex, newIndex;
+    project = {fresh: true};
+    oldIndex = service.save(project);
+    project.fresh = false;
+    newIndex = service.save(project);
+    expect(newIndex).toBe(oldIndex);
+    expect(service.get(newIndex)).toBe(project);
     expect(store.projects).toBe(angular.toJson(service.list()));
   });
 
