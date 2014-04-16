@@ -34,6 +34,11 @@ describe('EditProject Controller', function () {
     });
   }));
 
+  // jslint:unused(ctrl)...
+  it('should create a controller', function () {
+    expect(ctrl).not.toBeUndefined();
+  });
+
   it('should load a project by index', function () {
     expect(scope.index).toBe(1);
     expect(scope.project).toBe(projects.project);

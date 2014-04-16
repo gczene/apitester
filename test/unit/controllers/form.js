@@ -31,6 +31,11 @@ describe('Form Controller', function () {
     });
   }));
 
+  // jslint:unused(ctrl)...
+  it('should create a controller', function () {
+    expect(ctrl).not.toBeUndefined();
+  });
+
   it('should submit and save a success response', function () {
     httpBackend.expectGET('/test').respond({success: true});
     scope.submit();

@@ -12,7 +12,7 @@ describe('Projects Service', function () {
       return store[key];
     });
     spyOn(localStorage, 'setItem').andCallFake(function (key, value) {
-      return store[key] = value + '';
+      store[key] = String(value);
     });
     spyOn(localStorage, 'clear').andCallFake(function () {
       store = {};

@@ -2,13 +2,12 @@ describe('Responses Controller', function () {
 
   'use strict';
 
-  var scope, httpBackend, projects, ctrl;
+  var scope, projects, ctrl;
 
   beforeEach(module('apitesterApp.controllers'));
 
-  beforeEach(inject(function ($rootScope, $httpBackend, $controller) {
+  beforeEach(inject(function ($rootScope, $controller) {
     scope = $rootScope.$new();
-    httpBackend = $httpBackend;
     projects = {
       project: {
         responses: [1, 2, 3]
@@ -16,13 +15,18 @@ describe('Responses Controller', function () {
       save: function (project) {
         this.project = project;
       }
-    }
+    };
     scope.project = projects.project;
     ctrl = $controller('ResponsesCtrl', {
       $scope: scope,
       projects: projects
     });
   }));
+
+  // jslint:unused(ctrl)...
+  it('should create a controller', function () {
+    expect(ctrl).not.toBeUndefined();
+  });
 
   it('should return the loading state', function () {
     expect(scope.isLoading()).toBe(false);

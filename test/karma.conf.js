@@ -1,4 +1,7 @@
-module.exports = function(config) {
+module.exports = function (config) {
+
+  'use strict';
+
   config.set({
 
     basePath: '../',
@@ -12,7 +15,6 @@ module.exports = function(config) {
 
     frameworks: ['jasmine'],
     browsers: ['Chrome'],
-
 
     autoWatch: true,
     singleRun: false,

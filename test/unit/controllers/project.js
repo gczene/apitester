@@ -2,7 +2,7 @@ describe('Project Controller', function () {
 
   'use strict';
 
-  var scope, routeParams, filter, location, projects, ctrl;
+  var scope, routeParams, location, projects, ctrl;
 
   beforeEach(module('apitesterApp.controllers'));
 
@@ -31,6 +31,11 @@ describe('Project Controller', function () {
       projects: projects
     });
   }));
+
+  // jslint:unused(ctrl)...
+  it('should create a controller', function () {
+    expect(ctrl).not.toBeUndefined();
+  });
 
   it('should load a project by index', function () {
     expect(scope.index).toBe(1);

@@ -19,6 +19,11 @@ describe('ProjectList Controller', function () {
     });
   }));
 
+  // jslint:unused(ctrl)...
+  it('should create a controller', function () {
+    expect(ctrl).not.toBeUndefined();
+  });
+
   it('should load the list of projects', function () {
     expect(scope.projects).toEqual(projects.list());
   });

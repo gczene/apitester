@@ -23,6 +23,11 @@ describe('NewProject Controller', function () {
     });
   }));
 
+  // jslint:unused(ctrl)...
+  it('should create a controller', function () {
+    expect(ctrl).not.toBeUndefined();
+  });
+
   it('should create a new project', function () {
     location.path('/test');
     expect(scope.project).toEqual({

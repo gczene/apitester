@@ -1,11 +1,37 @@
-'use strict';
-
 module.exports = function (grunt) {
+
+  'use strict';
 
   grunt.initConfig({
 
     jslint: {
-      client: {
+      config: {
+        src: [
+          'Gruntfile.js',
+          'package.json',
+          'bower.json',
+          '.bowerrc',
+          'test/karma.conf.js'
+        ],
+        directives: {
+          node: true,
+          indent: 2
+        }
+      },
+      jasmine: {
+        src: ['test/unit/**/*.js'],
+        directives: {
+          browser: true,
+          node: true,
+          unparam: true,
+          indent: 2,
+          predef: [
+            'beforeEach', 'angular', 'inject',
+            'spyOn', 'describe', 'it', 'expect'
+          ]
+        }
+      },
+      angular: {
         src: [
           'app/scripts/*.js',
           'app/scripts/**/*.js'
@@ -13,13 +39,11 @@ module.exports = function (grunt) {
         exclude: [
           'app/scripts/script.min.js'
         ],
-        directives:{
+        directives: {
           browser: true,
           unparam: true,
           indent: 2,
-          predef: [
-            'angular'
-          ]
+          predef: ['angular']
         }
       }
     },
