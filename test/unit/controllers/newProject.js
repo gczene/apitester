@@ -5,7 +5,6 @@ describe('NewProjectCtrl', function () {
   var scope, location, projects, ctrl;
 
   beforeEach(module('apitesterApp.controllers'));
-
   beforeEach(inject(function ($rootScope, $location, $controller) {
 
     scope = $rootScope.$new();
@@ -27,20 +26,33 @@ describe('NewProjectCtrl', function () {
     });
   }));
 
+  // tests ...
+
   it('should save a new project', function () {
 
+    // set initial location
     location.path('/test');
 
+    // check the initial project state
+    expect(scope.project).toEqual({
+      name: '',
+      forms: [],
+      responses: []
+    });
+
+    // update and save the project
     scope.project.name = 'test';
     scope.formsJson = '[{"test":true}]';
     scope.save();
 
+    // check if the project has been saved
     expect(projects.project).toEqual({
       name: 'test',
-      forms: [{ test: true }],
+      forms: [{test: true}],
       responses: []
     });
 
-    expect(location.path(), '/project/1');
+    // check if location has been updated
+    expect(location.path()).toBe('/project/1');
   });
 });

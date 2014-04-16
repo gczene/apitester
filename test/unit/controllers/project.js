@@ -1,19 +1,17 @@
-describe('EditProjectCtrl', function () {
+describe('ProjectCtrl', function () {
 
   'use strict';
 
   var scope, routeParams, filter, location, projects, ctrl;
 
   beforeEach(module('apitesterApp.controllers'));
-  beforeEach(inject(function ($rootScope, $filter, $location, $controller) {
+  beforeEach(inject(function ($rootScope, $location, $controller) {
 
     scope = $rootScope.$new();
 
     routeParams = {
       index: 1
     };
-
-    filter = $filter;
 
     location = $location;
 
@@ -26,16 +24,15 @@ describe('EditProjectCtrl', function () {
       get: function (index) {
         return (index === 1) ? this.project : false;
       },
-      save: function (project) {
-        this.project = project;
+      remove: function (project) {
+        this.project = undefined;
         return 1;
       }
     };
 
-    ctrl = $controller('EditProjectCtrl', {
+    ctrl = $controller('ProjectCtrl', {
       $scope: scope,
       $routeParams: routeParams,
-      $filter: $filter,
       $location: $location,
       projects: projects
     });
@@ -46,10 +43,9 @@ describe('EditProjectCtrl', function () {
   it('should load a project by index', function () {
     expect(scope.index).toBe(1);
     expect(scope.project).toBe(projects.project);
-    expect(scope.formsJson).toBe(filter('json')(projects.project.forms));
   });
 
-  it('should save an existing project', function () {
+  it('should remove an existing project', function () {
 
     // set initial location
     location.path('/test');
@@ -61,18 +57,13 @@ describe('EditProjectCtrl', function () {
       responses: []
     });
 
-    // update and save the project
-    scope.project.name = 'renamed';
-    scope.save();
+    // remove the project
+    scope.remove();
 
-    // check if the project has been saved
-    expect(scope.project).toEqual({
-      name: 'renamed',
-      forms: [{test: true}],
-      responses: []
-    });
+    // check if the project has been removed
+    expect(projects.project).toBeUndefined();
 
     // check if location has been updated
-    expect(location.path()).toBe('/project/1');
+    expect(location.path()).toBe('/');
   });
 });
