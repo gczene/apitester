@@ -43,7 +43,8 @@ angular.module('apitesterApp.services').service('projects', function Projects() 
    * Restores projects from localStorage.
    */
   restoreState = function () {
-    projects = angular.fromJson(localStorage.projects) || demoProjects;
+    projects = angular.fromJson(localStorage.getItem('projects'))
+      || demoProjects;
   };
   restoreState();
 
@@ -51,7 +52,7 @@ angular.module('apitesterApp.services').service('projects', function Projects() 
    * Saves prpjects to localStorage.
    */
   saveState = function () {
-    localStorage.projects = angular.toJson(projects);
+    localStorage.setItem('projects', angular.toJson(projects));
   };
 
   /**

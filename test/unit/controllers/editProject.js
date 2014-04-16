@@ -1,22 +1,18 @@
-describe('EditProjectCtrl', function () {
+describe('EditProject Controller', function () {
 
   'use strict';
 
   var scope, routeParams, filter, location, projects, ctrl;
 
+
   beforeEach(module('apitesterApp.controllers'));
+
+
   beforeEach(inject(function ($rootScope, $filter, $location, $controller) {
-
     scope = $rootScope.$new();
-
-    routeParams = {
-      index: 1
-    };
-
+    routeParams = {index: 1};
     filter = $filter;
-
     location = $location;
-
     projects = {
       project: {
         name: 'test',
@@ -31,7 +27,6 @@ describe('EditProjectCtrl', function () {
         return 1;
       }
     };
-
     ctrl = $controller('EditProjectCtrl', {
       $scope: scope,
       $routeParams: routeParams,
@@ -41,7 +36,6 @@ describe('EditProjectCtrl', function () {
     });
   }));
 
-  // tests ...
 
   it('should load a project by index', function () {
     expect(scope.index).toBe(1);
@@ -49,30 +43,21 @@ describe('EditProjectCtrl', function () {
     expect(scope.formsJson).toBe(filter('json')(projects.project.forms));
   });
 
-  it('should save an existing project', function () {
 
-    // set initial location
+  it('should update an existing project', function () {
     location.path('/test');
-
-    // check the initial project state
     expect(scope.project).toEqual({
       name: 'test',
       forms: [{test: true}],
       responses: []
     });
-
-    // update and save the project
     scope.project.name = 'renamed';
     scope.save();
-
-    // check if the project has been saved
     expect(scope.project).toEqual({
       name: 'renamed',
       forms: [{test: true}],
       responses: []
     });
-
-    // check if location has been updated
     expect(location.path()).toBe('/project/1');
   });
 });

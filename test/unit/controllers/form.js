@@ -1,16 +1,16 @@
-describe('FormCtrl', function () {
+describe('Form Controller', function () {
 
   'use strict';
 
   var scope, httpBackend, projects, ctrl;
 
+
   beforeEach(module('apitesterApp.controllers'));
+
+
   beforeEach(inject(function ($httpBackend, $rootScope, $controller) {
-
     httpBackend = $httpBackend;
-
     scope = $rootScope.$new();
-
     projects = {
       project: {
         form: {
@@ -34,20 +34,11 @@ describe('FormCtrl', function () {
     });
   }));
 
-  // tests ...
 
   it('should submit and save a success response', function () {
-
-    // preapre a successfull request
     httpBackend.expectGET('/test').respond({success: true});
-
-    // submit the current form
     scope.submit();
-
-    // check the initial project state
     expect(scope.project.responses).toEqual([]);
-
-    // check if the response was saved as expected
     httpBackend.flush();
     expect(scope.project.responses).toEqual([{
       data: {success: true},
@@ -56,18 +47,11 @@ describe('FormCtrl', function () {
     }]);
   });
 
+
   it('should submit and save an error response', function () {
-
-    // preapre an unsuccessfull request
     httpBackend.expectGET('/test').respond(500, {error: true});
-
-    // submit the current form
     scope.submit();
-
-    // check the initial project state
     expect(scope.project.responses).toEqual([]);
-
-    // check if the response was saved as expected
     httpBackend.flush();
     expect(scope.project.responses).toEqual([{
       data: {error: true},
