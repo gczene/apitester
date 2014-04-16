@@ -37,7 +37,7 @@ describe('Projects Service', function () {
     expect(store.projects).toBe(angular.toJson(service.list()));
   });
 
-  it('should update an existing new project', function () {
+  it('should update an existing project', function () {
     var project, oldIndex, newIndex;
     project = {fresh: true};
     oldIndex = service.save(project);
