@@ -25,7 +25,6 @@ describe('Form Controller', function () {
     };
     scope.project = projects.project;
     scope.form = projects.project.form;
-
     ctrl = $controller('FormCtrl', {
       $scope: scope,
       projects: projects
