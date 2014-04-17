@@ -5,10 +5,8 @@ exports.config = {
   },
   framework: 'jasmine',
   capabilities: {
-    'browserName': 'chrome'
+    browserName: 'chrome'
   },
   baseUrl: 'http://localhost:8000/app/',
-  specs: [
-    'e2e/*.js'
-  ]
+  specs: ['e2e/*.js']
 };
