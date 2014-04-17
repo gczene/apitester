@@ -32,26 +32,31 @@ angular.module('apitesterApp.controllers', [
 /**
  * Specify routes.
  */
-angular.module('apitesterApp').config(function ($routeProvider) {
+angular.module('apitesterApp').config([
 
-  'use strict';
+  '$routeProvider',
 
-  $routeProvider.when('/new-project', {
-    controller: 'NewProjectCtrl',
-    templateUrl: '/views/newProject.html'
-  });
+  function ($routeProvider) {
 
-  $routeProvider.when('/project/:index', {
-    controller: 'ProjectCtrl',
-    templateUrl: '/views/project.html'
-  });
+    'use strict';
 
-  $routeProvider.when('/edit-project/:index', {
-    controller: 'EditProjectCtrl',
-    templateUrl: '/views/editProject.html'
-  });
+    $routeProvider.when('/new-project', {
+      controller: 'NewProjectCtrl',
+      templateUrl: 'views/newProject.html'
+    });
 
-  $routeProvider.otherwise({
-    redirectTo: '/project/0'
-  });
-});
+    $routeProvider.when('/project/:index', {
+      controller: 'ProjectCtrl',
+      templateUrl: 'views/project.html'
+    });
+
+    $routeProvider.when('/edit-project/:index', {
+      controller: 'EditProjectCtrl',
+      templateUrl: 'views/editProject.html'
+    });
+
+    $routeProvider.otherwise({
+      redirectTo: '/project/0'
+    });
+  }
+]);

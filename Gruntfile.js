@@ -11,7 +11,8 @@ module.exports = function (grunt) {
           'package.json',
           'bower.json',
           '.bowerrc',
-          'karma.conf.js'
+          'test/karma.conf.js',
+          'test/protractor.js'
         ],
         directives: {
           node: true,
