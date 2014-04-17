@@ -4,12 +4,19 @@ describe('Apitester Application', function () {
 
   browser.get('index.html');
 
+  beforeEach(function () {
+    browser.get('index.html');
+  });
+
   describe('new project page', function () {
 
     var h1, name, formsJson, submit;
 
     beforeEach(function () {
-      browser.get('index.html#/new-project/');
+
+      // click on the "New Project" button
+      element(by.css('header a:nth-child(1)')).click();
+
       h1 = element(by.css('h1'));
       name = element(by.model('project.name'));
       formsJson = element(by.model('formsJson'));
@@ -46,7 +53,13 @@ describe('Apitester Application', function () {
     var h1, name, formsJson, submit;
 
     beforeEach(function () {
-      browser.get('index.html#/edit-project/1');
+
+      // open the last project
+      element(by.css('.projects li:last-child a')).click();
+
+      // click on the "Edit Project" button
+      element(by.css('header a:nth-child(2)')).click();
+
       h1 = element(by.css('h1'));
       name = element(by.model('project.name'));
       formsJson = element(by.model('formsJson'));
@@ -86,12 +99,13 @@ describe('Apitester Application', function () {
   describe('project page', function () {
 
     beforeEach(function () {
-      browser.get('index.html#/project/1');
+      // open the last project
+      element(by.css('.projects li:last-child a')).click();
     });
 
     it('should should the list of projects', function () {
-      var buttons = element.all(by.css('.projects li'));
-      expect(buttons.count()).toEqual(2);
+      var projects = element.all(by.css('.projects li'));
+      expect(projects.count()).toEqual(2);
     });
 
     it('should show the navigation buttons', function () {
@@ -119,7 +133,8 @@ describe('Apitester Application', function () {
   describe('demo project page', function () {
 
     beforeEach(function () {
-      browser.get('index.html#/project/0');
+      // open the first (demo) project
+      element(by.css('.projects li:first-child a')).click();
     });
 
     it('should show the navigation buttons', function () {
