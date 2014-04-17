@@ -105,7 +105,7 @@ describe('Apitester Application', function () {
       browser.get('index.html#/project/0');
     });
 
-    it('should hide the delete project button', function () {
+    it('should show the navigation buttons', function () {
       var buttons = element.all(by.css('header a'));
       expect(buttons.count()).toEqual(3);
       expect(buttons.get(0).isDisplayed()).toBe(true);
