@@ -20,15 +20,18 @@ module.exports = function (grunt) {
         }
       },
       jasmine: {
-        src: ['test/unit/**/*.js'],
+        src: [
+          'test/unit/**/*.js',
+          'test/e2e/**/*.js'
+        ],
         directives: {
           browser: true,
           node: true,
           unparam: true,
           indent: 2,
           predef: [
-            'beforeEach', 'angular', 'inject',
-            'spyOn', 'describe', 'it', 'expect'
+            'beforeEach', 'angular', 'inject', 'spyOn', 'describe',
+            'it', 'expect', 'browser', 'element', 'by'
           ]
         }
       },

@@ -28,11 +28,11 @@
   },
   "scripts": {
     "postinstall": "bower install",
+    "update-webdriver": "webdriver-manager update",
     "start": "http-server -p 8000",
     "grunt": "grunt",
     "karma": "karma start test/karma.conf.js",
     "karma-single": "karma start test/karma.conf.js --single-run",
-    "update-webdriver": "webdriver-manager update",
     "protractor": "protractor test/protractor-conf.js"
   }
 }
