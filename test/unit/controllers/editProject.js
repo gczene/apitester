@@ -41,7 +41,6 @@ describe('EditProject Controller', function () {
       });
     }));
 
-    // jslint:unused(ctrl)...
     it('should create a controller', function () {
       expect(ctrl).not.toBeUndefined();
     });
@@ -66,7 +65,6 @@ describe('EditProject Controller', function () {
       });
     }));
 
-    // jslint:unused(ctrl)...
     it('should create a controller', function () {
       expect(ctrl).not.toBeUndefined();
     });

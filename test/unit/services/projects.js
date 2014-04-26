@@ -1,4 +1,4 @@
-describe('Projects Service', function () {
+describe('projects service', function () {
 
   'use strict';
 
@@ -58,7 +58,5 @@ describe('Projects Service', function () {
     expect(service.get(index)).toBe(false);
     expect(service.list().indexOf(project) === -1);
     expect(store.projects).toBe(angular.toJson(service.list()));
-    service.remove(project);
-    expect(service.list().length).toBe(1);
   });
 });

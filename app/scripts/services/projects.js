@@ -99,10 +99,8 @@ angular.module('apitesterApp.services').service('projects', function Projects() 
    */
   this.remove = function (project) {
     var index = projects.indexOf(project);
-    if (index > 0) { // projects[0] = demo
-      projects.splice(index, 1);
-      saveState();
-    }
+    projects.splice(index, 1);
+    saveState();
     return projects.length;
   };
 });

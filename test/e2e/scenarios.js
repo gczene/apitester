@@ -1,186 +1,182 @@
-describe('Apitester Application', function () {
+describe('API Tester application', function () {
 
   'use strict';
 
   browser.get('index.html');
+  browser.executeScript('window.localStorage.clear();');
 
-  beforeEach(function () {
-    browser.get('index.html');
-  });
+  describe('new project form', function () {
 
-  describe('new project page', function () {
-
-    var h1, name, formsJson, submit;
+    var form, name, forms, submit, project;
 
     beforeEach(function () {
-
-      // click on the "New Project" button
-      element(by.css('header a:nth-child(1)')).click();
-
-      h1 = element(by.css('h1'));
-      name = element(by.model('project.name'));
-      formsJson = element(by.model('formsJson'));
-      submit = element(by.css('[type=submit]'));
-    });
-
-    it('should show the new project form', function () {
-      expect(h1.getText()).toBe('Create a Project');
-      expect(name.isPresent()).toBe(true);
-      expect(formsJson.isPresent()).toBe(true);
-      expect(submit.isPresent()).toBe(true);
+      browser.get('index.html#/new-project');
+      form = element(by.css('form'));
+      name = form.element(by.model('project.name'));
+      forms = form.element(by.model('formsJson'));
+      submit = form.element(by.css('[type=submit]'));
+      project = element(by.css('.projects .active a'));
     });
 
     it('should create a new project', function () {
-      var projectLink;
-
-      expect(name.getAttribute('value')).toBe('');
-      expect(formsJson.getAttribute('value')).toBe('');
-
-      name.sendKeys('Test Project 001');
-      formsJson.sendKeys('[]');
-      expect(name.getAttribute('value')).toBe('Test Project 001');
-      expect(formsJson.getAttribute('value')).toBe('[]');
-
+      name.sendKeys('Test Project');
+      forms.sendKeys('[]');
       submit.click();
-      projectLink = element(by.css('.projects .active a'));
-      expect(projectLink.isPresent()).toBe(true);
-      expect(projectLink.getText()).toBe('Test Project 001');
+      expect(project.isPresent()).toBe(true);
+      expect(project.getText()).toBe('Test Project');
     });
   });
 
-  describe('edit project page', function () {
+  describe('edit project form', function () {
 
-    var h1, name, formsJson, submit;
+    var form, name, forms, submit, project;
 
     beforeEach(function () {
-
-      // open the last project
-      element(by.css('.projects li:last-child a')).click();
-
-      // click on the "Edit Project" button
-      element(by.css('header a:nth-child(2)')).click();
-
-      h1 = element(by.css('h1'));
-      name = element(by.model('project.name'));
-      formsJson = element(by.model('formsJson'));
-      submit = element(by.css('[type=submit]'));
+      browser.get('index.html#/edit-project/1');
+      form = element(by.css('form'));
+      name = form.element(by.model('project.name'));
+      forms = form.element(by.model('formsJson'));
+      submit = form.element(by.css('[type=submit]'));
+      project = element(by.css('.projects .active a'));
     });
 
-    it('should show the edit project form', function () {
-      expect(h1.getText()).toBe('Edit Project');
-      expect(name.isPresent()).toBe(true);
-      expect(formsJson.isPresent()).toBe(true);
-      expect(submit.isPresent()).toBe(true);
-    });
-
-    it('should edit and update an existing project', function () {
-      var projectLink;
-
-      expect(name.getAttribute('value')).toBe('Test Project 001');
-      expect(formsJson.getAttribute('value')).toBe('[]');
-
+    it('should update an existing project', function () {
       name.clear();
-      formsJson.clear();
-      expect(name.getAttribute('value')).toBe('');
-      expect(formsJson.getAttribute('value')).toBe('');
-
-      name.sendKeys('Test Project 002');
-      formsJson.sendKeys('[]');
-      expect(name.getAttribute('value')).toBe('Test Project 002');
-      expect(formsJson.getAttribute('value')).toBe('[]');
-
+      forms.clear();
+      name.sendKeys('Updated Project Name');
+      forms.sendKeys('[]');
       submit.click();
-      projectLink = element(by.css('.projects .active a'));
-      expect(projectLink.isPresent()).toBe(true);
-      expect(projectLink.getText()).toBe('Test Project 002');
+      expect(project.isPresent()).toBe(true);
+      expect(project.getText()).toBe('Updated Project Name');
     });
   });
 
   describe('project page', function () {
 
-    beforeEach(function () {
-      // open the last project
-      element(by.css('.projects li:last-child a')).click();
+    describe('projects bar', function () {
+
+      var bar, projects, filter;
+
+      beforeEach(function () {
+        browser.get('index.html#/project/1');
+        bar = element(by.css('.projects'));
+        projects = bar.element.all(by.css('a'));
+        filter = bar.element(by.model('searchText'));
+      });
+
+      it('should show a filterable list of projects', function () {
+        expect(projects.count()).toBe(2);
+        filter.sendKeys('Updated Project Name');
+        expect(projects.count()).toBe(1);
+        filter.clear();
+        expect(projects.count()).toBe(2);
+      });
     });
 
-    it('should should the list of projects', function () {
-      var projects = element.all(by.css('.projects li'));
-      expect(projects.count()).toEqual(2);
+    describe('header', function () {
+
+      var buttons;
+
+      beforeEach(function () {
+        browser.get('index.html#/project/1');
+        buttons = element.all(by.css('header a'));
+      });
+
+      it('should contain a new project button', function () {
+        var h1 = element(by.css('h1'));
+        expect(buttons.get(0).getText()).toBe('NEW PROJECT');
+        buttons.get(0).click();
+        expect(h1.getText()).toBe('Create a Project');
+      });
+
+      it('should contain an edit project button', function () {
+        var h1 = element(by.css('h1'));
+        expect(buttons.get(1).getText()).toBe('EDIT PROJECT');
+        buttons.get(1).click();
+        expect(h1.getText()).toBe('Edit Project');
+      });
+
+      it('should contain a delete project button', function () {
+        var projects = element.all(by.css('.projects a'));
+        expect(buttons.get(2).getText()).toBe('DELETE PROJECT');
+        expect(projects.count()).toBe(2);
+        buttons.get(2).click();
+        expect(projects.count()).toBe(1);
+      });
     });
 
-    it('should show the navigation buttons', function () {
-      var buttons = element.all(by.css('header a'));
-      expect(buttons.count()).toEqual(3);
-      expect(buttons.get(0).isDisplayed()).toBe(true);
-      expect(buttons.get(1).isDisplayed()).toBe(true);
-      expect(buttons.get(2).isDisplayed()).toBe(true);
+    describe('forms', function () {
+
+      var forms;
+
+      beforeEach(function () {
+        browser.get('index.html#/project/0');
+        forms = element.all(by.css('.forms form'));
+      });
+
+      it('should show 3 forms', function () {
+        expect(forms.count()).toBe(3);
+      });
+
+      describe('first form', function () {
+
+        var form, legend, name, submit, responses;
+
+        beforeEach(function () {
+          form = element(by.css('.forms form:nth-child(1)'));
+          legend = form.element(by.css('legend'));
+          name = form.element(by.css('[name=q]'));
+          submit = form.element(by.css('[type=submit]'));
+          responses = element.all(by.css('.responses .response'));
+        });
+
+        it('should show the right legend', function () {
+          expect(legend.getText()).toBe('Searching by city name');
+        });
+
+        it('should send an API request', function () {
+          expect(responses.count()).toBe(0);
+          name.sendKeys('London, UK');
+          submit.click();
+          expect(responses.count()).toBe(1);
+        });
+      });
     });
 
-    it('should remove a project', function () {
-      var projects, removeButton;
+    describe('responses bar', function () {
 
-      projects = element.all(by.css('.projects a'));
-      removeButton = element(by.css('header a:last-child'));
+      var bar, responses, filter;
 
-      expect(projects.count()).toEqual(2);
+      beforeEach(function () {
+        browser.get('index.html#/project/0');
+        bar = element(by.css('.responses'));
+        responses = bar.element.all(by.css('.response'));
+        filter = bar.element(by.model('searchText'));
+      });
 
-      removeButton.click();
+      it('should show a filterable list of responses', function () {
+        expect(responses.count()).toBe(1);
+        filter.sendKeys('foobar');
+        expect(responses.count()).toBe(0);
+        filter.clear();
+        expect(responses.count()).toBe(1);
+      });
 
-      expect(projects.count()).toEqual(1);
-    });
-  });
+      describe('response', function () {
 
-  describe('demo project page', function () {
+        var response, deleteButton;
 
-    beforeEach(function () {
-      // open the first (demo) project
-      element(by.css('.projects li:first-child a')).click();
-    });
+        beforeEach(function () {
+          response = bar.element(by.css('.responses .response'));
+          deleteButton = response.element(by.css('button'));
+        });
 
-    it('should show the navigation buttons', function () {
-      var buttons = element.all(by.css('header a'));
-      expect(buttons.count()).toEqual(3);
-      expect(buttons.get(0).isDisplayed()).toBe(true);
-      expect(buttons.get(1).isDisplayed()).toBe(true);
-      expect(buttons.get(2).isDisplayed()).toBe(false);
-    });
-
-    it('should show the demo forms', function () {
-      var forms = element.all(by.css('.forms form'));
-      expect(forms.count()).toEqual(3);
-    });
-
-    it('should send a request', function () {
-      var responses, cityName, submit;
-
-      responses = element.all(by.css('.response'));
-      cityName = element(by.css('[name=q]'));
-      submit = element(by.css('.forms form:first-child [type=submit]'));
-
-      expect(cityName.isPresent()).toBe(true);
-      expect(cityName.getAttribute('value')).toBe('');
-      expect(submit.isPresent()).toBe(true);
-
-      cityName.sendKeys('London, UK');
-      expect(cityName.getAttribute('value')).toBe('London, UK');
-
-      expect(responses.count()).toEqual(0);
-      submit.click();
-      expect(responses.count()).toEqual(1);
-    });
-
-    it('should delete a response', function () {
-      var responses, removeButton;
-
-      responses = element.all(by.css('.response'));
-      removeButton = element(by.css('.response:first-child button'));
-
-      expect(responses.count()).toEqual(1);
-      expect(removeButton.isPresent()).toBe(true);
-
-      removeButton.click();
-
-      expect(responses.count()).toEqual(0);
+        it('should be deletable', function () {
+          expect(response.isPresent()).toBe(true);
+          deleteButton.click();
+          expect(response.isPresent()).toBe(false);
+        });
+      });
     });
   });
 });
