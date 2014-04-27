@@ -35,7 +35,7 @@ describe('Form Controller', function () {
     expect(ctrl).not.toBeUndefined();
   });
 
-  it('should submit and save a success response', function () {
+  it('should send a request and save a success response', function () {
     httpBackend.expectGET('/test').respond({success: true});
     scope.submit();
     expect(scope.project.responses).toEqual([]);
@@ -47,7 +47,7 @@ describe('Form Controller', function () {
     }]);
   });
 
-  it('should submit and save an error response', function () {
+  it('should send a request and save an error response', function () {
     httpBackend.expectGET('/test').respond(500, {error: true});
     scope.submit();
     expect(scope.project.responses).toEqual([]);
