@@ -55,21 +55,40 @@ describe('API Tester application', function () {
 
     describe('projects bar', function () {
 
-      var bar, projects, filter;
+      var bar, filter;
 
       beforeEach(function () {
         browser.get('index.html#/project/1');
         bar = element(by.css('.projects'));
-        projects = bar.element.all(by.css('a'));
         filter = bar.element(by.model('searchText'));
       });
 
-      it('should show a filterable list of projects', function () {
-        expect(projects.count()).toBe(2);
-        filter.sendKeys('Updated Project Name');
-        expect(projects.count()).toBe(1);
-        filter.clear();
-        expect(projects.count()).toBe(2);
+      describe('project list', function () {
+
+        var projects, activeProject;
+
+        beforeEach(function () {
+          projects = bar.element.all(by.css('li a'));
+          activeProject = bar.element(by.css('li.active a'));
+        });
+
+        it('should show 2 projects', function () {
+          expect(projects.count()).toBe(2);
+        });
+
+        it('should be filterable', function () {
+          filter.sendKeys('Updated Project Name');
+          expect(projects.count()).toBe(1);
+          filter.clear();
+          expect(projects.count()).toBe(2);
+        });
+
+        it('should navigate between projects', function () {
+          projects.get(1).click();
+          expect(activeProject.getText()).toBe(projects.get(1).getText());
+          projects.get(0).click();
+          expect(activeProject.getText()).toBe(projects.get(0).getText());
+        });
       });
     });
 
@@ -82,26 +101,62 @@ describe('API Tester application', function () {
         buttons = element.all(by.css('header a'));
       });
 
-      it('should contain a new project button', function () {
-        var h1 = element(by.css('h1'));
-        expect(buttons.get(0).getText()).toBe('NEW PROJECT');
-        buttons.get(0).click();
-        expect(h1.getText()).toBe('Create a Project');
+      describe('first button', function () {
+
+        var button, h1;
+
+        beforeEach(function () {
+          button = buttons.get(0);
+          h1 = element(by.css('h1'));
+        });
+
+        it('should read NEW PROJECT', function () {
+          expect(button.getText()).toBe('NEW PROJECT');
+        });
+
+        it('should navigate to the new project page', function () {
+          button.click();
+          expect(h1.getText()).toBe('Create a Project');
+        });
       });
 
-      it('should contain an edit project button', function () {
-        var h1 = element(by.css('h1'));
-        expect(buttons.get(1).getText()).toBe('EDIT PROJECT');
-        buttons.get(1).click();
-        expect(h1.getText()).toBe('Edit Project');
+      describe('second button', function () {
+
+        var button, h1;
+
+        beforeEach(function () {
+          button = buttons.get(1);
+          h1 = element(by.css('h1'));
+        });
+
+        it('should read EDIT PROJECT', function () {
+          expect(button.getText()).toBe('EDIT PROJECT');
+        });
+
+        it('should contain an edit project button', function () {
+          button.click();
+          expect(h1.getText()).toBe('Edit Project');
+        });
       });
 
-      it('should contain a delete project button', function () {
-        var projects = element.all(by.css('.projects a'));
-        expect(buttons.get(2).getText()).toBe('DELETE PROJECT');
-        expect(projects.count()).toBe(2);
-        buttons.get(2).click();
-        expect(projects.count()).toBe(1);
+      describe('third button', function () {
+
+        var button, projects;
+
+        beforeEach(function () {
+          button = buttons.get(2);
+          projects = element.all(by.css('.projects a'));
+        });
+
+        it('should read DELETE PROJECT', function () {
+          expect(button.getText()).toBe('DELETE PROJECT');
+        });
+
+        it('should contain a delete project button', function () {
+          expect(projects.count()).toBe(2);
+          button.click();
+          expect(projects.count()).toBe(1);
+        });
       });
     });
 
@@ -134,47 +189,82 @@ describe('API Tester application', function () {
           expect(legend.getText()).toBe('Searching by city name');
         });
 
-        it('should send an API request', function () {
+        it('should send API requests', function () {
           expect(responses.count()).toBe(0);
+
           name.sendKeys('London, UK');
           submit.click();
           expect(responses.count()).toBe(1);
+
+          name.sendKeys('Budapest, HU');
+          submit.click();
+          expect(responses.count()).toBe(2);
+
+          name.sendKeys('foobar');
+          submit.click();
+          expect(responses.count()).toBe(3);
         });
       });
     });
 
     describe('responses bar', function () {
 
-      var bar, responses, filter;
+      var bar, filter;
 
       beforeEach(function () {
         browser.get('index.html#/project/0');
         bar = element(by.css('.responses'));
-        responses = bar.element.all(by.css('.response'));
         filter = bar.element(by.model('searchText'));
       });
 
-      it('should show a filterable list of responses', function () {
-        expect(responses.count()).toBe(1);
-        filter.sendKeys('foobar');
-        expect(responses.count()).toBe(0);
-        filter.clear();
-        expect(responses.count()).toBe(1);
-      });
+      describe('response list', function () {
 
-      describe('response', function () {
-
-        var response, deleteButton;
+        var responses;
 
         beforeEach(function () {
-          response = bar.element(by.css('.responses .response'));
-          deleteButton = response.element(by.css('button'));
+          responses = bar.element.all(by.css('.response'));
         });
 
-        it('should be deletable', function () {
-          expect(response.isPresent()).toBe(true);
-          deleteButton.click();
-          expect(response.isPresent()).toBe(false);
+        it('should show 3 responses', function () {
+          expect(responses.count()).toBe(3);
+        });
+
+        it('should be filterable', function () {
+          filter.sendKeys('london');
+          expect(responses.count()).toBe(1);
+          filter.clear();
+          filter.sendKeys('foobar');
+          expect(responses.count()).toBe(0);
+          filter.clear();
+          expect(responses.count()).toBe(3);
+        });
+
+        describe('response', function () {
+
+          var response;
+
+          beforeEach(function () {
+            response = bar.element(by.css('.responses .response'));
+          });
+
+          describe('remove button', function () {
+
+            var removeButton;
+
+            beforeEach(function () {
+              removeButton = response.element(by.css('button'));
+            });
+
+            it('should delete a button', function () {
+              expect(responses.count()).toBe(3);
+              removeButton.click();
+              expect(responses.count()).toBe(2);
+              removeButton.click();
+              expect(responses.count()).toBe(1);
+              removeButton.click();
+              expect(responses.count()).toBe(0);
+            });
+          });
         });
       });
     });
