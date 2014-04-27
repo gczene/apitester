@@ -2,11 +2,11 @@
 
 A lightweight API tester tool.
 
-## Usage
+http://apitester.artoon.hu
 
-Click on edit project, and edit your forms JSON.
+## Demo project
 
-Demo JSON (for http://api.openweathermap.org):
+Some simple forms for: http://api.openweathermap.org
 
 ```json
 [
@@ -54,8 +54,6 @@ Demo JSON (for http://api.openweathermap.org):
   }
 ]
 ```
-
-![Screenshot](https://raw.githubusercontent.com/gaborsar/apitester/master/app/img/screenshot-002.png)
 
 ## License
 MIT
