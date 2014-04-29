@@ -192,14 +192,17 @@ describe('API Tester application', function () {
         it('should send API requests', function () {
           expect(responses.count()).toBe(0);
 
+          name.clear();
           name.sendKeys('London, UK');
           submit.click();
           expect(responses.count()).toBe(1);
 
+          name.clear();
           name.sendKeys('Budapest, HU');
           submit.click();
           expect(responses.count()).toBe(2);
 
+          name.clear();
           name.sendKeys('foobar');
           submit.click();
           expect(responses.count()).toBe(3);
